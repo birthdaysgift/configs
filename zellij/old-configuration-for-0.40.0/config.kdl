@@ -1,0 +1,53 @@
+// Enable or disable automatic copy (and clear) of selection when releasing mouse
+copy_on_select false
+
+ui {
+    pane_frames {
+        rounded_corners true
+    }
+}
+
+keybinds {
+
+  normal {
+    
+    unbind "Ctrl q"
+
+    // rebind Tab mode keybindings
+    // to not interfere with fzf's keybindings
+    unbind "Ctrl t"
+    bind "Ctrl f" { SwitchToMode "Tab"; }
+
+    // rebind Lock mode keybindings
+    unbind "Ctrl g"
+    bind "Ctrl l" { SwitchToMode "Locked"; }
+
+  }
+
+  tab {
+
+    // rebind tab mode keybindings
+    // to not interfere with fzf's keybindings
+    unbind "Ctrl t"
+    bind "Ctrl f" { SwitchToMode "Normal"; }
+    bind "i" { MoveTab "Left"; }
+    bind "o" { MoveTab "Right"; }
+  }
+
+  locked {
+    // rebind Lock mode keybindings
+    unbind "Ctrl g"
+    bind "Ctrl l" { SwitchToMode "Normal"; }
+  }
+
+  pane {
+
+    // exit Pane mode after switching the pane
+    bind "h" "Left" { MoveFocus "Left"; SwitchToMode "Normal"; }
+    bind "l" "Right" { MoveFocus "Right"; SwitchToMode "Normal"; }
+    bind "j" "Down" { MoveFocus "Down"; SwitchToMode "Normal"; }
+    bind "k" "Up" { MoveFocus "Up"; SwitchToMode "Normal"; }
+
+  }
+}
+
