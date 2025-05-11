@@ -15,7 +15,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.api.nvim_create_autocmd('FileType', {
   group = vim.api.nvim_create_augroup('trim_whitespaces', { clear = true }),
   desc = 'Trim trailing white spaces',
-  pattern = 'bash,c,cpp,lua,java,go,php,javascript,make,python,rust,perl,sql,markdown',
+  -- pattern = 'bash,c,cpp,lua,java,go,php,javascript,make,python,rust,perl,sql,txt,markdown',
+  pattern = '*',
   callback = function()
     vim.api.nvim_create_autocmd('BufWritePre', {
       pattern = '<buffer>',
@@ -30,3 +31,51 @@ vim.api.nvim_create_autocmd('FileType', {
     })
   end,
 })
+
+
+local function split(string, delimiter)
+  local result = {}
+  local from  = 1
+  local delim_from, delim_to = string.find(string, delimiter, from)
+  while delim_from do
+    table.insert(result, string.sub(string, from , delim_from-1))
+    from  = delim_to + 1
+    delim_from, delim_to = string.find(string, delimiter, from )
+  end
+  table.insert(result, string.sub(string, from ))
+  return result
+end
+
+
+vim.api.nvim_create_user_command(
+  'C',
+  function(opts)
+    if not opts.args then
+      return
+    end
+
+    local config_path = ".notrack/nvim/config.json"
+    local f=io.open(config_path, "r")
+    if f==nil then
+      io.close(f)
+      print("config_path not found")
+      return
+    end
+
+    local config = vim.json.decode(f:read("*a"))
+
+    local args = split(opts.args, ":")
+
+    local arg = table.remove(args, 1)
+    local command_to_execute = config["commands"][arg] or arg
+    vim.cmd("cgetex system('" .. command_to_execute .. "')")
+
+    for _, arg in pairs(args) do
+      local command_to_execute = config["commands"][arg] or arg
+      vim.cmd("caddex system('" .. command_to_execute .. "')")
+    end
+
+  end,
+  { nargs = '*', desc = "Custom Q command" }
+)
+

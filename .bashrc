@@ -1,3 +1,8 @@
+if [[ "$BASHPROFILE_LOADED" != "true" ]]; then
+    . "$HOME/.bash_profile"
+    return
+fi
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -19,11 +24,11 @@ export HISTCONTROL=ignoredups:ignorespace:erasedups
 
 
 # append to the history file, don't overwrite it
-# shopt -s histappend
+shopt -s histappend
 
 # This command appends the current session's history to the .bash_history file
 # each time when a new command is executed within bash.
-# PROMPT_COMMAND="history -w;$PROMPT_COMMAND"
+PROMPT_COMMAND="history -w;$PROMPT_COMMAND"
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -52,7 +57,8 @@ if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1="\e[01;34m\t \w\e[m "
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -72,7 +78,9 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 
+alias e='printenv'
 alias venv-poetry='.venv-poetry/bin/poetry'
+alias x='fuck'
 alias p='python'
 alias p3='python3'
 alias d='deactivate'
@@ -82,18 +90,19 @@ alias fk='history -d -2'  # drop last command from bash history
 alias b='bat --color=always'
 alias zj='zellij'
 alias lg='lazygit'
-alias lzd='lazydocker'
 alias nv='nvim'
-alias tm='tmux'
-function cd {
-    # Use the built-in cd command to change directories
-    # and return immediately if any error happened
-    builtin cd "$@" || return
-    # Execute ls in the new directory
-    ls
-}
-function lgp {
-    lg -p "$1"
+alias f='tere'
+alias g='rg -i'
+
+
+tere() {
+    local result=$( \
+	command tere \
+	--normal-search \
+	--map='ctrl-n:CursorDown,ctrl-p:CursorUp,ctrl-d:CursorDownScreen,ctrl-u:CursorUpScreen' \
+	"$@" \
+    )
+    [ -n "$result" ] && cd -- "$result"
 }
 
 
@@ -102,46 +111,24 @@ function lgp {
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 
-# pyenv configuration
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+# used to add directories/files to $PATH if they're not there
+PATH_prepend() {
+    local dir="$1"
+
+    if [[ ":$PATH:" != *":$dir:"* ]]; then
+        export PATH="$dir:$PATH"
+    fi
+}
 
 
-# nvm configuration
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+PATH_prepend "$HOME/programs/nvim-linux64/bin"
+PATH_prepend "$HOME/programs/aws/bin"
+PATH_prepend "$HOME/programs/aws-azure-login"
 
-
-# add neovim
-export PATH="$PATH:$HOME/programs/nvim-linux64/bin"
-
-# add zellij
-export PATH="$PATH:$HOME/programs/zellij"
-
-# add zoxide
-export PATH="$PATH:$HOME/programs/zoxide"
-# set up zoxide autocompletions
 eval "$(zoxide init bash)"
 
-# add lazygit
-export PATH="$PATH:$HOME/programs/lazygit"
+eval "$(thefuck --alias)"
 
-# add lazydocker
-export PATH="$PATH:$HOME/programs/lazydocker"
-
-# add bat
-export PATH="$PATH:$HOME/programs/bat"
-
-# add tmux
-export PATH="$PATH:$HOME/programs/tmux/bin"
-
-# add ripgrep
-export PATH="$PATH:$HOME/programs/ripgrep"
-
-# add fzf
-export PATH="$PATH:$HOME/programs/fzf"
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --bash)"
 # enable fzf completion for "nv" alias
@@ -176,4 +163,5 @@ else
 fi
 }
 
-. "$HOME/.cargo/env"
+export BASHRC_LOADED="true"
+

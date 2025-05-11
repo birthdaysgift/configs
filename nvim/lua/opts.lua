@@ -4,13 +4,6 @@
 -- To make nvim work with keybindings typed in "ru" layout
 vim.opt.langmap = (
   ''
-  -- .. 'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯЖ'
-  -- .. ';'
-  -- .. 'ABCDEFGHIJKLMNOPQRSTUVWXYZ:'
-  -- .. ','
-  -- .. 'фисвуапршолдьтщзйкыегмцчня'
-  -- .. ';'
-  -- .. 'abcdefghijklmnopqrstuvwxyz'
   .. 'ФA,ИB,СC,ВD,УE,АF,ПG,РH,ШI,ОJ,'
   .. 'ЛK,ДL,ЬM,ТN,ЩO,ЗP,ЙQ,КR,ЫS,ЕT,'
   .. 'ГU,МV,ЦW,ЧX,НY,ЯZ,Ж:,фa,иb,сc,'
