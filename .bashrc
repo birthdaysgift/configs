@@ -93,6 +93,7 @@ alias lg='lazygit'
 alias nv='nvim'
 alias f='tere'
 alias g='rg -i'
+alias n='clear -x; nu'
 
 
 tere() {
