@@ -12,6 +12,7 @@ esac
 # set neovim as a default text editor
 export EDITOR="nvim"
 export VISUAL="nvim"
+export MANPAGER="nvim +Man!"
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -38,6 +39,9 @@ shopt -s checkwinsize
 # match all files and zero or more directories and subdirectories.
 shopt -s globstar
 
+# enable vim motions on pressing <Esc>
+set -o vi
+
 
 # make less more friendly for non-text input files, see lesspipe(1)
 # for example it make less to be able to read PDF's, archives and so on
@@ -58,7 +62,8 @@ fi
 
 if [ "$color_prompt" = yes ]; then
     # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    PS1="\e[01;34m\t \w\e[m "
+    # PS1="\e[01;34m\t \w\e[m "
+    PS1='\[\033[01;34m\]\t \w\[\033[00m\] '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -78,8 +83,9 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 
+alias al='alias'
 alias e='printenv'
-alias venv-poetry='.venv-poetry/bin/poetry'
+alias vp='.venv-poetry/bin/poetry'
 alias x='fuck'
 alias p='python'
 alias p3='python3'
@@ -97,6 +103,8 @@ alias n='clear -x; nu'
 
 
 tere() {
+    start_time_ms=$(($(date +%s%N) / 1000000))
+
     local result=$( \
 	command tere \
 	--normal-search \
@@ -104,6 +112,12 @@ tere() {
 	"$@" \
     )
     [ -n "$result" ] && cd -- "$result"
+
+    end_time_ms=$(($(date +%s%N) / 1000000))
+    time_diff_ms=$((end_time_ms - start_time_ms))
+    time_diff_s=$((time_diff_ms / 1000))
+
+    echo "it took you ${time_diff_s} s to get to ${result}"
 }
 
 
