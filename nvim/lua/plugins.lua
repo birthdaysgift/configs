@@ -13,8 +13,6 @@ require('lazy').setup({
   -- Detect tabstop and shiftwidth automatically from contents currently opened file
   'tpope/vim-sleuth',
 
-  { "birthdaysgift/qfix" },
-
   -- color preview
   "norcalli/nvim-colorizer.lua",
 
@@ -781,8 +779,6 @@ require('lazy').setup({
         },
 
 
-        { "<leader>q", require("qfix").run, desc="[Q]FIX run"},
-        -- { "<leader>q", ":copen<CR>", desc="[Q]uickfix toggle" },
         { "<C-j>", ":cnext<CR>", desc="[Q]uickfix next" },
         { "<C-k>", ":cprev<CR>", desc="[Q]uickfix prev" },
 
