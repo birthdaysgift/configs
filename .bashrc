@@ -96,7 +96,7 @@ alias fk='history -d -2'  # drop last command from bash history
 alias b='bat --color=always'
 alias zj='zellij'
 alias lg='lazygit'
-alias nv='nvim'
+alias nv='nvim .'
 alias f='tere'
 alias g='rg -i'
 alias n='clear -x; nu'
