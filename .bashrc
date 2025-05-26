@@ -151,6 +151,11 @@ _fzf_setup_completion path nv
 export FZF_CTRL_T_OPTS="--preview='bat --color=always {}'"
 
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
 # # ex = EXtractor for all kinds of archives
 # # usage: ex <file>
 ex ()
@@ -179,4 +184,3 @@ fi
 }
 
 export BASHRC_LOADED="true"
-
