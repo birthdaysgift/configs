@@ -1,4 +1,5 @@
 theme "ao"
+scrollback_editor "nvim"
 
 ui {
     pane_frames {
@@ -18,7 +19,7 @@ keybinds clear-defaults=true {
         bind "f" "Ctrl f" { SwitchToMode "tab"; }
         bind "m" { SwitchToMode "move"; }
         bind "o" "Ctrl o" { SwitchToMode "session"; }
-        bind "p" "Ctrl p" { SwitchToMode "pane"; }
+        bind "j" "Ctrl j" { SwitchToMode "pane"; }
         bind "r" "Ctrl r" { SwitchToMode "resize"; }
         bind "s" "Ctrl s" { SwitchToMode "scroll"; EditScrollback; SwitchToMode "locked"; }
     }
@@ -44,7 +45,6 @@ keybinds clear-defaults=true {
         bind "o" "Ctrl o" { SwitchToMode "session"; }
         bind "s" "Ctrl s" { SwitchToMode "scroll"; EditScrollback; SwitchToMode "locked"; }
         bind "r" "Ctrl r" { SwitchToMode "renamepane"; PaneNameInput 0; }
-        bind "p" "Ctrl p" { SwitchToMode "normal"; }
         bind "Ctrl l" { SwitchToMode "locked"; }
     }
     tab {
