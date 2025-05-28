@@ -7,7 +7,6 @@ return {
     branch = '0.1.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope-ui-select.nvim',
       'nvim-tree/nvim-web-devicons',  -- adds pretty icons, but requires special font.
       {
         -- If encountering errors, see telescope-fzf-native README for install instructions
@@ -26,17 +25,10 @@ return {
     config = function()
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
-      require('telescope').setup({
-        extensions = {
-          ['ui-select'] = {
-            require('telescope.themes').get_dropdown(),
-          },
-        },
-      })
+      require('telescope').setup({})
 
       -- Enable telescope extensions, if they are installed
       pcall(require('telescope').load_extension, 'fzf')
-      pcall(require('telescope').load_extension, 'ui-select')
     end,
   },
 }
