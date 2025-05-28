@@ -4,6 +4,24 @@ return {
     dependencies = {
       'mfussenegger/nvim-dap',
       'nvim-neotest/nvim-nio',
+      {
+        -- The telescope-ui-select extension allows Telescope to replace
+        -- the default vim.ui.select() dialog with a Telescope-powered dropdown.
+
+        -- This is useful when nvim-dap-ui uses vim.ui.select()
+        -- to ask you to pick a debug configuration.
+        "nvim-telescope/telescope-ui-select.nvim",
+        config = function()
+          require("telescope").setup({
+            extensions = {
+              ["ui-select"] = {
+                require("telescope.themes").get_dropdown({})
+              }
+            },
+          })
+          require("telescope").load_extension("ui-select")
+        end
+      },
     },
     config = function()
       local dapui = require('dapui')
