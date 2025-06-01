@@ -25,16 +25,6 @@ return {
       })
 
       require("which-key").add({
-        {
-          "<leader>Q",
-          function()
-            vim.cmd(":wa")
-            require("confirm-quit").confirm_quit_all()
-          end,
-          desc="[Q]uit all",
-        },
-
-
         { "<C-j>", ":cnext<CR>", desc="[Q]uickfix next" },
         { "<C-k>", ":cprev<CR>", desc="[Q]uickfix prev" },
 
@@ -55,14 +45,6 @@ return {
         { "<C-f>x", ":tabclose<CR>", desc="Close tab" },
 
         { "<leader>C", ":ColorizerToggle<CR>", desc = "[C]olorizer toggle" },
-
-        { "<leader>S", ":Spectre <CR>", desc = "[S]pectre"},
-
-        { "<leader>N", ":Neotest summary <CR>", desc = "[N]eotest"},
-
-        { "<leader>a", group = "[A]erial" },
-        { "<leader>aa", ":AerialToggle float<CR>", desc = "[A]erial toggle" },
-        { "<leader>an", ":AerialNavToggle<CR>", desc = "[A]erial[N]av toggle" },
 
         { "<leader>n", group = "[N]eotree" },
         { "<leader>nn", ":Neotree position=float toggle=true<CR>", desc = "[N]eotree files" },
