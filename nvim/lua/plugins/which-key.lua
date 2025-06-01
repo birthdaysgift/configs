@@ -29,7 +29,6 @@ return {
         { "<C-k>", ":cprev<CR>", desc="[Q]uickfix prev" },
 
         { "-", ":Oil<CR>", desc = 'Open parent directory in oil.nvim' },
-        { "<leader>h", function() require("noice").cmd("history") end, desc = "Show notifications [H]istory" },
 
         { "C-f", group="Tab navigation"},
         { "<C-f>1", "1gt", desc="Tab 1" },
