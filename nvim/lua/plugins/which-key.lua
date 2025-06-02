@@ -43,8 +43,6 @@ return {
         { "<C-f>n", ":tabnew<CR>", desc="New tab" },
         { "<C-f>x", ":tabclose<CR>", desc="Close tab" },
 
-        { "<leader>C", ":ColorizerToggle<CR>", desc = "[C]olorizer toggle" },
-
         { "<leader>n", group = "[N]eotree" },
         { "<leader>nn", ":Neotree position=float toggle=true<CR>", desc = "[N]eotree files" },
         { "<leader>nb", ":Neotree buffers position=float toggle=true<CR>", desc = "[N]eotree [B]uffers" },
@@ -98,11 +96,7 @@ return {
           desc = '[S]earch [/] in Open Files',
         },
 
-        { "<leader>r", group = "[R]ename" },
-        { "<leader>t", group = "[T]oggle" },
         { "<leader>b", group = "[B]reakpoints" },
-        { "<leader>c", group = "[C]ode" },
-        { "<leader>w", group = "[W]orkspace" },
         { "<leader>L", ":LazyGit<CR>", desc = '[L]azyGit' },
 
         { "<leader>d", group = "[D]ebug" },
