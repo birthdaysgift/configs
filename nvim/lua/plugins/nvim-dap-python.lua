@@ -20,6 +20,8 @@ return {
         console = 'integratedTerminal',
       })
 
+      vim.keymap.set("n", "<leader>dp", require("dap-python").test_method, { desc = "[P]ytest method under cursor" })
+
     end,
   },
 }

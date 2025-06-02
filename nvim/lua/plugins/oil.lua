@@ -3,12 +3,18 @@
 return {
   {
     'stevearc/oil.nvim',
-    opts = {
-      default_file_explorer = false,
-      columns = {},  -- columns to be viewed when you open directoy in oil
-      view_options = {
-        show_hidden = true,
-      }
-    },
+    config = function()
+
+      require("oil").setup({
+        default_file_explorer = false,
+        columns = {},  -- columns to be viewed when you open directoy in oil
+        view_options = {
+          show_hidden = true,
+        }
+      })
+
+      vim.keymap.set("n", "-", ":Oil<CR>", { desc = 'Open parent directory in oil.nvim' })
+
+    end,
   },
 }
