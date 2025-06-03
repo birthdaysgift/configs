@@ -1,6 +1,9 @@
 -- list actually set keymaps
 -- :map
 
+-- disable backspace (it's convenient to use <C-H> instead)
+vim.keymap.set("i", "<BS>", "<Nop>", { remap = false })
+
 -- disable search highlights
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
