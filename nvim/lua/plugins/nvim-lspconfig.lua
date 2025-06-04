@@ -18,7 +18,11 @@ return {
         },
       })
 
-      require("lspconfig").pyright.setup({})
+      require("lspconfig").pyright.setup({
+        on_attach = function(client, bufnr)
+          vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Definition [LSP]"})
+        end
+      })
     end,
 
   },
