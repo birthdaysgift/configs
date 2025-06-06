@@ -19,6 +19,14 @@ return {
       })
 
       require("lspconfig").pyright.setup({
+        settings = {
+          python = {
+            analysis = {
+              -- disable global typechecking in favor of per project typing configurations
+              typeCheckingMode = "off"
+            }
+          }
+        },
         on_attach = function(client, bufnr)
           vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Definition [LSP]"})
         end
