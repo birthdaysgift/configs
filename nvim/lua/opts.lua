@@ -81,3 +81,6 @@ vim.g.netrw_browse_split = 3 -- open file in a new tab
 -- to see already set options use :lua print(vim.o.formatoptions)
 vim.opt.formatoptions = vim.opt.formatoptions + '2'  -- When formatting text, use the indent of the second line of a paragraph for the rest of the paragraph,
 vim.opt.formatoptions = vim.opt.formatoptions + 'p'  -- Don't break lines at single spaces that follow periods.
+
+
+vim.diagnostic.config({ underline = false })

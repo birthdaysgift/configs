@@ -29,3 +29,19 @@ vim.keymap.set("n", "<C-f>9", "9gt", { desc="Tab 4" })
 vim.keymap.set("n", "<C-f>n", ":tabnew<CR>", { desc="New tab" })
 vim.keymap.set("n", "<C-f>x", ":tabclose<CR>", { desc="Close tab" })
 
+
+local show_diagnostics = false
+vim.keymap.set("n", "<leader>D", function()
+
+  show_diagnostics = not show_diagnostics
+
+  vim.diagnostic.config({
+    virtual_lines = show_diagnostics and {
+      format = function(diagnostic)
+        -- Customize the format to include the source
+        return string.format("[%s] %s", diagnostic.source, diagnostic.message)
+      end,
+    },
+  })
+
+end, { desc = "Toggle virtual lines for diagnostics" })
