@@ -28,7 +28,24 @@ return {
           }
         },
         on_attach = function(client, bufnr)
-          vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Definition [LSP]"})
+
+          vim.keymap.set(
+            "n",
+            "gd",
+            function()
+              vim.lsp.buf.definition()
+
+              -- since definition() is asynchronous,
+              -- we need to wait some time (in milliseconds)
+              -- for it finish execution
+              vim.defer_fn(function()
+                vim.cmd("normal! zz")
+              end, 50)
+
+            end,
+            { desc = "Definition [LSP]" }
+          )
+
         end
       })
     end,

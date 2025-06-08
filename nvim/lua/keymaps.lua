@@ -7,9 +7,12 @@ vim.keymap.set("i", "<BS>", "<Nop>", { remap = false })
 -- disable search highlights
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
--- Center cursor after half-page jumps
+-- Center cursor after jumps
+vim.keymap.set('n', 'G', 'Gzz')
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
+vim.keymap.set('n', '<C-o>', '<C-o>zz')
+vim.keymap.set('n', '<C-i>', '<C-i>zz')
 
 -- quickfix list navigation
 vim.keymap.set("n", "<C-j>", ":cnext<CR>", { desc="[Q]uickfix next" })
