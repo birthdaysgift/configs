@@ -1,5 +1,4 @@
 {
-  "barbecue": { "branch": "main", "commit": "cd7e7da622d68136e13721865b4d919efd6325ed" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "99290b3ec1322070bcfb9e846450a46f6efa50f0" },
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "dap-helper.nvim": { "branch": "master", "commit": "0fd417149dc1353d70d1b5c6353ba8ce49e385b7" },
