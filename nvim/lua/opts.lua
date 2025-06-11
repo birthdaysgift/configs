@@ -24,8 +24,32 @@ vim.opt.colorcolumn = '121'
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
 
--- Don't show the mode, since it's already in status line
 vim.opt.showmode = false
+vim.opt.ruler = false  -- weird thing at the right side of the cmdline (idk why it's needed)
+
+function _G.mode_name()
+  local modes = {
+    n = "NORMAL",
+    no = "N·OP",
+    i = "INSERT",
+    v = "VISUAL",
+    V = "V-LINE",
+    [""] = "V-BLOCK",
+    c = "COMMAND",
+    R = "REPLACE",
+    t = "TERMINAL",
+  }
+  return modes[vim.api.nvim_get_mode().mode] or "UNKNOWN"
+end
+
+vim.opt.statusline = table.concat({
+  " [%{mode()}]",  -- Current mode
+  " %f",  -- File path
+  " %m%r",  -- Modified/readonly
+  " %=",  -- Align right
+  " %p%%",  -- Percentage through file
+  " | Ln: %l/%L | Col: %c",  -- Line and column
+})
 
 -- Sync clipboard between OS and Neovim.
 -- See `:help 'clipboard'`
