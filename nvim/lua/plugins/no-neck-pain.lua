@@ -7,15 +7,7 @@ return {
 
       vim.keymap.set("n", "<leader>N", ":NoNeckPain<CR>", { desc = "Toggle [N]oNeckPain" })
 
-      vim.api.nvim_create_autocmd(
-        {
-          "BufEnter",
-        }, {
-          callback = function()
-            require("no-neck-pain").enable()
-          end,
-        }
-      )
+      vim.api.nvim_create_autocmd({ "BufEnter" }, { callback = require("no-neck-pain").enable })
     end,
   }
 }
