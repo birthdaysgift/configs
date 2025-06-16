@@ -108,3 +108,31 @@ vim.api.nvim_create_user_command(
   { nargs = '*', desc = "Custom Q command" }
 )
 
+-- Filetypes for which autosave is enabled
+local autosave_filetypes = {
+  -- you can filetype of the current buffer via
+  -- :lua print(vim.bo.filetype)
+  lua = true,
+  markdown = true,
+  python = true,
+  text = true,
+}
+
+-- Create a unique autocommand group to avoid duplication
+vim.api.nvim_create_augroup("AutoSaveOnChange", { clear = true })
+
+-- Define the autosave autocommands
+vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
+  group = "AutoSaveOnChange",
+  callback = function(args)
+    local buf = args.buf
+    local ft = vim.bo[buf].filetype
+
+    -- Only autosave for allowed filetypes and modifiable, modified buffers
+    if autosave_filetypes[ft] and vim.bo[buf].modifiable and vim.bo[buf].modified then
+      vim.api.nvim_buf_call(buf, function()
+        vim.cmd("silent update")
+      end)
+    end
+  end,
+})
