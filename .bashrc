@@ -39,9 +39,6 @@ shopt -s checkwinsize
 # match all files and zero or more directories and subdirectories.
 shopt -s globstar
 
-# enable vim motions on pressing <Esc>
-set -o vi
-
 
 # make less more friendly for non-text input files, see lesspipe(1)
 # for example it make less to be able to read PDF's, archives and so on
