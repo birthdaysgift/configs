@@ -15,6 +15,11 @@ vim.keymap.set('n', '<C-i>', '<C-i>zz')
 vim.keymap.set("n", "<C-j>", ":cnext<CR>", { desc="[Q]uickfix next" })
 vim.keymap.set("n", "<C-k>", ":cprev<CR>", { desc="[Q]uickfix prev" })
 
+
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+
 -- tab navigation
 vim.keymap.set("n", "<C-f>", function() end, { desc="Tab navigation" })
 vim.keymap.set("n", "<C-f>1", "1gt", { desc="Tab 1" })
