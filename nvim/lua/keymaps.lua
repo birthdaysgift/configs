@@ -16,6 +16,11 @@ vim.keymap.set("n", "<C-j>", ":cnext<CR>", { desc="[Q]uickfix next" })
 vim.keymap.set("n", "<C-k>", ":cprev<CR>", { desc="[Q]uickfix prev" })
 
 
+vim.keymap.set("i", "<C-k>", function()
+  return "<Esc>ddkA"
+end, { noremap = true, expr = true })
+
+
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
