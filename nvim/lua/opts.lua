@@ -27,21 +27,6 @@ vim.opt.mouse = 'a'
 vim.opt.showmode = false
 vim.opt.ruler = false  -- weird thing at the right side of the cmdline (idk why it's needed)
 
-function _G.mode_name()
-  local modes = {
-    n = "NORMAL",
-    no = "N·OP",
-    i = "INSERT",
-    v = "VISUAL",
-    V = "V-LINE",
-    [""] = "V-BLOCK",
-    c = "COMMAND",
-    R = "REPLACE",
-    t = "TERMINAL",
-  }
-  return modes[vim.api.nvim_get_mode().mode] or "UNKNOWN"
-end
-
 vim.opt.statusline = table.concat({
   " [%{mode()}]",  -- Current mode
   " %f",  -- File path
