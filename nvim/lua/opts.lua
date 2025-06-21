@@ -29,6 +29,7 @@ vim.opt.ruler = false  -- weird thing at the right side of the cmdline (idk why 
 
 vim.opt.statusline = table.concat({
   " [%{mode()}]",  -- Current mode
+  " | %Y |", -- filetype
   " %f",  -- File path
   " %m%r",  -- Modified/readonly
   " %=",  -- Align right
