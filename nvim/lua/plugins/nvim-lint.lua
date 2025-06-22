@@ -4,7 +4,8 @@ return {
     config = function()
 
       require("lint").linters_by_ft = {
-        python = {"ruff", "flake8", "mypy"}
+        python = {"ruff", "flake8", "mypy"},
+        sh = {"shellcheck"},
       }
 
       vim.api.nvim_create_autocmd(
