@@ -112,6 +112,7 @@ vim.api.nvim_create_user_command(
 local autosave_filetypes = {
   -- you can filetype of the current buffer via
   -- :lua print(vim.bo.filetype)
+  gitignore = true,
   lua = true,
   markdown = true,
   python = true,
