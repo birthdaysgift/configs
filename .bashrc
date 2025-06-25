@@ -117,6 +117,36 @@ tere() {
     echo "it took you ${time_diff_s} s to get to ${result}"
 }
 
+ff() {
+    local BASE_DIR
+    BASE_DIR="${1:-.}"
+
+    local TARGET_DIR
+    TARGET_DIR=$(
+	fd \
+	    --type d \
+	    --exclude .git \
+	    --exclude __pycache__ \
+	    --exclude node_modules \
+	    . \
+	    "$BASE_DIR" \
+	    | sed "s|^$BASE_DIR/||" \
+	    | fzf \
+		--style full:rounded \
+		--height 50% \
+		--preview="tree -L 1 $BASE_DIR/{}"
+    )
+    if [ -z "$TARGET_DIR" ]; then
+	return
+    fi
+
+    cd "$BASE_DIR/$TARGET_DIR" || return
+
+    # and add correct "cd ..." command instead of "ff"
+    # (idk why, but it deletes "ff" from history automatically)
+    history -s "cd $BASE_DIR/$TARGET_DIR"
+}
+
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -136,8 +166,6 @@ PATH_prepend() {
 PATH_prepend "$HOME/programs/nvim-linux64/bin"
 PATH_prepend "$HOME/programs/aws/bin"
 PATH_prepend "$HOME/programs/aws-azure-login"
-
-eval "$(zoxide init bash)"
 
 eval "$(thefuck --alias)"
 
