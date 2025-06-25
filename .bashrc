@@ -81,6 +81,7 @@ fi
 
 
 alias al='alias'
+alias h='cd ~'
 alias e='printenv'
 alias vp='.venv-poetry/bin/poetry'
 alias x='fuck'
