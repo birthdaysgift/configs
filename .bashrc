@@ -175,7 +175,10 @@ eval "$(thefuck --alias)"
 eval "$(fzf --bash)"
 # enable fzf completion for "nv" alias
 _fzf_setup_completion path nv
-export FZF_CTRL_T_OPTS="--preview='bat --color=always {}'"
+export FZF_CTRL_T_OPTS="\
+    --style full:rounded \
+    --preview='bat --color=always {}' \
+"
 
 
 export NVM_DIR="$HOME/.nvm"
