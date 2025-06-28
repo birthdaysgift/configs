@@ -169,7 +169,6 @@ PATH_prepend "$HOME/programs/nvim-linux64/bin"
 PATH_prepend "$HOME/programs/aws/bin"
 PATH_prepend "$HOME/programs/aws-azure-login"
 
-eval "$(thefuck --alias)"
 
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --bash)"
