@@ -119,6 +119,23 @@ tere() {
     echo "it took you ${time_diff_s} s to get to ${result}"
 }
 
+table() {
+    # SCRIPT_PATH="$(readlink -f "${BASH_SOURCE[0]}")"  # resolve symlink
+    # SCRIPT_DIR="$(dirname "$SCRIPT_PATH")"  # get actual script directory
+
+    # local STDIN
+    # STDIN=$(cat)  # reads all stdin into a variable
+
+    # echo "$STDIN" | $SCRIPT_DIR/table/.venv/bin/python3 $SCRIPT_DIR/table/main.py "$@"
+
+    SCRIPT_PATH="$(readlink -f "${BASH_SOURCE[0]}")"
+    SCRIPT_DIR="$(dirname "$SCRIPT_PATH")"
+
+    # Pass the pipe directly as stdin to the python script
+    "$SCRIPT_DIR/table/.venv/bin/python3" "$SCRIPT_DIR/table/main.py" "$@"
+}
+
+
 ff() {
     local BASE_DIR
     BASE_DIR="${1:-.}"
