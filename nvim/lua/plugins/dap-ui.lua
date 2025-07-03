@@ -65,7 +65,7 @@ return {
               -- { id = "stacks", size = 0.25 },
               { id = "watches", size = 0.2 },
             },
-            position = "right",
+            position = "left",
             size = 40
           },
           {
