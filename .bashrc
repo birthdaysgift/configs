@@ -183,6 +183,7 @@ PATH_prepend "$HOME/programs/aws-azure-login"
 eval "$(fzf --bash)"
 # enable fzf completion for "nv" alias
 _fzf_setup_completion path nv
+export FZF_CTRL_R_OPTS="--style full:rounded"
 export FZF_CTRL_T_OPTS="\
     --style full:rounded \
     --preview='bat --color=always {}' \
