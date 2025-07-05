@@ -14,6 +14,8 @@ return {
     config = function()
       require("mini.ai").setup({ n_lines = 500 })
 
+      -- disable default 's' behavior to not conflict with mini.surround
+      vim.keymap.set({'n', 'v'}, 's', '<Nop>')
       require("mini.surround").setup()
 
       require("mini.splitjoin").setup({
