@@ -12,7 +12,33 @@ return {
   {
     "echasnovski/mini.nvim",
     config = function()
-      require("mini.ai").setup({ n_lines = 500 })
+
+      require("mini.ai").setup({
+        custom_textobjects = {
+          [' '] = function()
+            local line = vim.fn.getline('.')
+            local col = vim.fn.col('.') - 1
+
+            -- Find left space boundary
+            local left = col
+            while left > 0 and line:sub(left, left) ~= ' ' do
+              left = left - 1
+            end
+
+            -- Find right space boundary
+            local right = col + 1
+            while right <= #line and line:sub(right, right) ~= ' ' do
+              right = right + 1
+            end
+
+            return {
+              from = { line = vim.fn.line('.'), col = left + 1 },
+              to = { line = vim.fn.line('.'), col = right - 1 },
+            }
+          end,
+        },
+        n_lines = 500,
+      })
 
       -- disable default 's' behavior to not conflict with mini.surround
       vim.keymap.set({'n', 'v'}, 's', '<Nop>')
