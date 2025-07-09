@@ -38,7 +38,7 @@ sudo ln -s ./keyd /etc/keyd
 
 2. Start `keyd` daemon service
 ```bash
-sudo systemctl enable --now keyd.rvaiya
+sudo systemctl enable --now keyd
 ```
 
 3. Set key repeat and key delay
