@@ -19,13 +19,13 @@ keybinds clear-defaults=true {
         bind "f" "Ctrl f" { SwitchToMode "tab"; }
         bind "m" { SwitchToMode "move"; }
         bind "o" "Ctrl o" { SwitchToMode "session"; }
-        bind "j" "Ctrl j" { SwitchToMode "pane"; }
+        bind "j" "Enter" { SwitchToMode "pane"; }
         bind "r" "Ctrl r" { SwitchToMode "resize"; }
         bind "s" "Ctrl s" { SwitchToMode "scroll"; EditScrollback; SwitchToMode "locked"; }
     }
     pane {
         bind "h" "Ctrl h" { MoveFocus "left"; SwitchToMode "locked"; }
-        bind "j" "Ctrl j" { MoveFocus "down"; SwitchToMode "locked"; }
+        bind "j" "Enter" { MoveFocus "down"; SwitchToMode "locked"; }
         bind "k" "Ctrl k" { MoveFocus "up"; SwitchToMode "locked"; }
         bind "l" "Ctrl l" { MoveFocus "right"; SwitchToMode "locked"; }
 
