@@ -21,7 +21,11 @@ keybinds clear-defaults=true {
         bind "o" "Ctrl o" { SwitchToMode "session"; }
         bind "j" "Enter" { SwitchToMode "pane"; }
         bind "r" "Ctrl r" { SwitchToMode "resize"; }
-        bind "s" "Ctrl s" { SwitchToMode "scroll"; EditScrollback; SwitchToMode "locked"; }
+        bind "e" "Ctrl e" { SwitchToMode "scroll"; EditScrollback; SwitchToMode "locked"; }
+
+        bind "a" "Ctrl a" { GoToTab 1; SwitchToMode "locked"; }
+        bind "s" "Ctrl s" { GoToTab 2; SwitchToMode "locked"; }
+        bind "d" "Ctrl d" { GoToTab 3; SwitchToMode "locked"; }
     }
     pane {
         bind "h" "Ctrl h" { MoveFocus "left"; SwitchToMode "locked"; }
