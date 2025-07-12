@@ -3,11 +3,6 @@ if [[ "$BASHPROFILE_LOADED" != "true" ]]; then
     return
 fi
 
-# If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
 
 # set neovim as a default text editor
 export EDITOR="nvim"
@@ -179,6 +174,11 @@ PATH_prepend "$HOME/programs/nvim-linux64/bin"
 PATH_prepend "$HOME/programs/aws/bin"
 PATH_prepend "$HOME/programs/aws-azure-login"
 
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
 
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --bash)"

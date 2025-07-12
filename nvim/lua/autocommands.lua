@@ -1,9 +1,9 @@
--- [[ Basic Autocommands ]]
---  See `:help lua-guide-autocommands`
+vim.api.nvim_create_user_command("SH", function(opts)
+  local cmd = table.concat(opts.fargs, " ")
+  vim.cmd("'<,'>!bash -c 'source ~/.bashrc;" .. cmd .. "'")
+end, { nargs = "+" , range = true })
 
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
+
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
