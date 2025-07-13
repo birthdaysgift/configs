@@ -116,6 +116,7 @@ local autosave_filetypes = {
   lua = true,
   markdown = true,
   python = true,
+  sh = true,
   text = true,
 }
 
