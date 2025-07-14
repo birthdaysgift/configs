@@ -26,16 +26,16 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 
 -- tab navigation
-vim.keymap.set("n", "<C-f>", function() end, { desc="Tab navigation" })
+vim.keymap.set("n", "<C-f>", "<NOP>", { desc="Tab navigation" })
 vim.keymap.set("n", "<C-f>1", "1gt", { desc="Tab 1" })
 vim.keymap.set("n", "<C-f>2", "2gt", { desc="Tab 2" })
 vim.keymap.set("n", "<C-f>3", "3gt", { desc="Tab 3" })
 vim.keymap.set("n", "<C-f>4", "4gt", { desc="Tab 4" })
-vim.keymap.set("n", "<C-f>5", "5gt", { desc="Tab 4" })
-vim.keymap.set("n", "<C-f>6", "6gt", { desc="Tab 4" })
-vim.keymap.set("n", "<C-f>7", "7gt", { desc="Tab 4" })
-vim.keymap.set("n", "<C-f>8", "8gt", { desc="Tab 4" })
-vim.keymap.set("n", "<C-f>9", "9gt", { desc="Tab 4" })
+vim.keymap.set("n", "<C-f>5", "5gt", { desc="Tab 5" })
+vim.keymap.set("n", "<C-f>6", "6gt", { desc="Tab 6" })
+vim.keymap.set("n", "<C-f>7", "7gt", { desc="Tab 7" })
+vim.keymap.set("n", "<C-f>8", "8gt", { desc="Tab 8" })
+vim.keymap.set("n", "<C-f>9", "9gt", { desc="Tab 9" })
 vim.keymap.set("n", "<C-f>n", ":tabnew<CR>", { desc="New tab" })
 vim.keymap.set("n", "<C-f>x", ":tabclose<CR>", { desc="Close tab" })
 
