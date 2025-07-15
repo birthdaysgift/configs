@@ -25,6 +25,10 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 
+vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "[W]rite buffer" })
+vim.keymap.set("n", "<leader>q", ":quitall<CR>", { desc = "[Q]uit nvim" })
+
+
 -- tab navigation
 vim.keymap.set("n", "<C-f>", "<NOP>", { desc="Tab navigation" })
 vim.keymap.set("n", "<C-f>1", "1gt", { desc="Tab 1" })
