@@ -50,6 +50,8 @@ return {
       vim.keymap.set("n", "<leader>sd", require("telescope.builtin").diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set("n", "<leader>sj", require("telescope.builtin").jumplist, { desc = '[S]earch [J]umplist' })
       vim.keymap.set("n", "<leader>sr", require("telescope.builtin").resume, { desc = '[S]earch [R]esume' })
+      vim.keymap.set({"n", "v"}, "<leader>s:", require("telescope.builtin").command_history, { desc = '[S]earch [:] history' })
+      vim.keymap.set("n", "<leader>s/", require("telescope.builtin").search_history, { desc = '[S]earch [/] history' })
       vim.keymap.set("n", "<leader><leader>", require("telescope.builtin").buffers, { desc = '[ ] Existing buffers' })
       vim.keymap.set("n", "<leader>/", require("telescope.builtin").current_buffer_fuzzy_find, { desc = '[/] Fuzzily search in current buffer' })
 
