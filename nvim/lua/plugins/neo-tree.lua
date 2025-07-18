@@ -36,6 +36,13 @@ return {
       vim.keymap.set("n", "<leader>nb", ":Neotree buffers float toggle=true<CR>", { desc = "[N]eotree [B]uffers" })
       vim.keymap.set("n", "<leader>ng", ":Neotree git_status float toggle=true<CR>", { desc = "[N]eotree [G]it" })
 
+      vim.keymap.set(
+        "n",
+        "<leader>ns",
+        ":Neotree float toggle=true dir=" .. vim.fn.expand("~") .. "/.local/state/nvim/swap" .. "<CR>",
+        { desc = "[N]eotree [S]wap files" }
+      )
+
     end,
   },
 }
