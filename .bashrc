@@ -75,26 +75,35 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 
+set_alias() {
+  local ALIAS_NAME=$1
+  local ALIAS_BODY="${@:2}"
+
+  eval "$ALIAS_NAME() { $ALIAS_BODY \$@ ; }"
+}
+
+
+set_alias h 'cd ~'
+set_alias e 'printenv'
+set_alias x 'fuck'
+set_alias p 'python'
+set_alias p3 'python3'
+set_alias g 'rg -i'
+
+
 alias al='alias'
-alias h='cd ~'
-alias e='printenv'
-alias vp='.venv-poetry/bin/poetry'
-alias x='fuck'
-alias p='python'
-alias p3='python3'
 alias d='deactivate'
 alias s='source'
+alias zj='zellij'
+alias lg='lazygit'
+alias r='ranger'
+alias nv='nvim .'
+alias f='tere'
+alias vp='.venv-poetry/bin/poetry'
 alias c='clear'
 alias fk='history -d -2'  # drop last command from bash history
 alias b='bat --color=always'
-alias zj='zellij'
-alias lg='lazygit'
-alias nv='nvim .'
-alias f='tere'
-alias g='rg -i'
-alias n='clear -x; nu'
 alias rel='source ~/.bashrc'
-alias r='ranger'
 
 
 tere() {
