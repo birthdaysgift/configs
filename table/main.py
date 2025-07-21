@@ -37,7 +37,7 @@ def to_csv(text, separator):
 
     cleaned_data = []
 
-    cell_positions = itertools.pairwise(plus_positions)
+    cell_positions = list(itertools.pairwise(plus_positions))
     for row in [header[1]] + rows[3:-2]:
         cleaned_row = []
         for start, end in cell_positions:
