@@ -1,6 +1,58 @@
 -- Fuzzy Finder for everything - files, lsp, etc.
 
-utils = require('utils')
+local utils = require('utils')
+
+
+local function search_filesystem()
+  require("telescope.pickers").new({}, {
+    prompt_title = "Filesystem",
+    finder = require("telescope.finders").new_oneshot_job(
+      {
+        "fd",
+        "--hidden",
+        "--no-ignore",
+        "--exclude", ".git",
+        "--exclude", ".venv*",
+        "--exclude", "__pycache__",
+        "--exclude", "node_modules",
+      },
+      { cwd = vim.uv.cwd() }
+    ),
+    sorter = require("telescope.config").values.generic_sorter(),
+    previewer = require("telescope.previewers").new_termopen_previewer({
+      get_command = function(entry)
+        local stat = vim.uv.fs_stat(entry.value)
+        if stat and stat.type == "directory" then
+          return { "tree", "-L", "1", "-F", "--dirsfirst", "-a", "-n", entry.value }
+        end
+        return { "cat", "--number", entry.value }
+      end
+    }),
+    attach_mappings = function(_, _)
+      require("telescope.actions").select_default:replace(
+        function()
+          require("telescope.actions").close(vim.api.nvim_get_current_buf())
+          local path = require("telescope.actions.state").get_selected_entry().value
+
+          local stat = vim.uv.fs_stat(path)
+
+          if not stat then
+            print("Path does not exist")
+            return
+          end
+
+          if stat.type == "directory" then
+            vim.cmd("Neotree reveal dir=" .. path)
+            return
+          end
+
+          vim.cmd("edit " .. vim.fn.fnameescape(path))
+        end
+      )
+      return true
+    end
+  }):find()
+end
 
 
 return {
@@ -21,19 +73,17 @@ return {
 
       require('telescope').setup({
         defaults = {
-          file_ignore_patterns = { "^.git/", },
           vimgrep_arguments = utils.list_concat(
-            require("telescope.config").values.vimgrep_arguments, 
+            require("telescope.config").values.vimgrep_arguments,
             {
               "--hidden",  -- include hidden (dot-prefixed) files, like .bashrc
+              "--no-ignore",  -- include gitignored file and dirs
               "--glob", "!**/.git/*", -- exclude .git/ directory files
+              "--glob", "!**/node_modules/*", -- exclude node_modules/ directory files
+              "--glob", "!**/.venv*/*", -- exclude .venv*/ directory files
+              "--glob", "!**/__pycache__", -- exclude __pycache__ directories and files
             }
           ),
-        },
-        pickers = {
-          find_files = {
-            hidden = true,  -- include hidden (dot-prefixed) files, like .bashrc
-          },
         },
       })
 
@@ -43,7 +93,7 @@ return {
       vim.keymap.set("n", "<leader>s", "<NOP>", { desc = "[S]earch with Telescope" })
       vim.keymap.set("n", "<leader>sh", require("telescope.builtin").help_tags, { desc = "[H]elp" })
       vim.keymap.set("n", "<leader>sk", require("telescope.builtin").keymaps, { desc = '[S]earch [K]eymaps' })
-      vim.keymap.set("n", "<leader>sf", require("telescope.builtin").find_files, { desc = '[S]earch [F]iles' })
+      vim.keymap.set("n", "<leader>sf", search_filesystem, { desc = '[S]earch [F]ilesystem' })
       vim.keymap.set("n", "<leader>ss", require("telescope.builtin").builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set("n", "<leader>sw", require("telescope.builtin").grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set("n", "<leader>sg", require("telescope.builtin").live_grep, { desc = '[S]earch by [G]rep' } )
@@ -54,28 +104,6 @@ return {
       vim.keymap.set("n", "<leader>s/", require("telescope.builtin").search_history, { desc = '[S]earch [/] history' })
       vim.keymap.set("n", "<leader><leader>", require("telescope.builtin").buffers, { desc = '[ ] Existing buffers' })
       vim.keymap.set("n", "<leader>/", require("telescope.builtin").current_buffer_fuzzy_find, { desc = '[/] Fuzzily search in current buffer' })
-
-      vim.keymap.set("n", "<leader>sn", "<NOP>", { desc = "[S]earch .[n]otrack directory" })
-      vim.keymap.set(
-        "n",
-        "<leader>snf",
-        function()
-          require("telescope.builtin").find_files({ no_ignore = true, search_dirs = { ".notrack" }, })
-        end,
-        { desc = '[S]earch .[n]otrack/ files' }
-      )
-      vim.keymap.set(
-        "n",
-        "<leader>sng",
-        function()
-          require("telescope.builtin").live_grep({ 
-            additional_args = { "--no-ignore" },
-            search_dirs = { ".notrack" }, 
-          })
-        end,
-        { desc = '[S]earch .[n]otrack/ by [G]rep' }
-      )
-
     end,
   },
 }
