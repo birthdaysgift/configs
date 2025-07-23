@@ -26,7 +26,7 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 
 vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "[W]rite buffer" })
-vim.keymap.set("n", "<leader>q", ":quitall<CR>", { desc = "[Q]uit nvim" })
+vim.keymap.set("n", "<leader>q", ":quitall!<CR>", { desc = "[Q]uit nvim" })
 
 
 -- tab navigation

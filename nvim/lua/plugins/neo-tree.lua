@@ -12,6 +12,7 @@ return {
       require("neo-tree").setup({
         hijack_netrw_behavior="open_default",
         filesystem = {
+          bind_to_cwd = false,
           filtered_items = {
             visible = true,
           },
