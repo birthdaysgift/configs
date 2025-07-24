@@ -25,4 +25,11 @@ for _, file in ipairs(plugin_files) do
 end
 
 
-require('lazy').setup(plugins)
+require('lazy').setup(
+  plugins,
+  {
+    ui = {
+      border = "rounded",
+    }
+  }
+)
