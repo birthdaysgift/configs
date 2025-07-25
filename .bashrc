@@ -97,7 +97,6 @@ alias s='source'
 alias zj='zellij'
 alias lg='lazygit'
 alias r='ranger'
-alias nv='nvim .'
 alias f='tere'
 alias vp='.venv-poetry/bin/poetry'
 alias c='clear'
@@ -235,3 +234,8 @@ fi
 }
 
 export BASHRC_LOADED="true"
+
+bind -x '"\C-o":nvim .'
+
+
+
