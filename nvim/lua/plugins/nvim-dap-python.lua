@@ -14,8 +14,16 @@ return {
       table.insert(require('dap').configurations.python, {
         type = 'python',
         request = 'launch',
-        name = 'Current module',
+        name = '(ipapi) ip.di_graphql.router',
         module = 'ip.di_graphql.router',
+        cwd = '${workspaceFolder}/api',
+        console = 'integratedTerminal',
+      })
+      table.insert(require('dap').configurations.python, {
+        type = 'python',
+        request = 'launch',
+        name = '(ipapi) api/wsgi.py',
+        module = 'wsgi',
         cwd = '${workspaceFolder}/api',
         console = 'integratedTerminal',
       })
