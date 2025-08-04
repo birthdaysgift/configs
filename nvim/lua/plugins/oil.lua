@@ -10,7 +10,10 @@ return {
         columns = {},  -- columns to be viewed when you open directoy in oil
         view_options = {
           show_hidden = true,
-        }
+        },
+        keymaps = {
+          ["<BS>"] = { "actions.parent", mode = "n" },
+        },
       })
 
       vim.keymap.set("n", "-", ":Oil<CR>", { desc = 'Open parent directory in oil.nvim' })
