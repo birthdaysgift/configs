@@ -43,6 +43,16 @@ return {
           { name = "nvim_lsp" },
           { name = "path" },
         },
+        sorting = {
+          priority_weight = 1,
+          comparators = {
+            cmp.config.compare.locality,         -- prioritize by closeness to cursor
+            cmp.config.compare.recently_used,    -- things you've recently selected
+            cmp.config.compare.score,            -- LSP / source-based score
+            cmp.config.compare.offset,           -- how close the match is in text
+            cmp.config.compare.order,            -- fallback order
+          },
+        },
       }
     end,
   },
