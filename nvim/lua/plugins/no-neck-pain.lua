@@ -3,7 +3,7 @@ return {
     "shortcuts/no-neck-pain.nvim",
     version = "*",
     config = function()
-      require("no-neck-pain").setup({width=130})
+      require("no-neck-pain").setup({width=135})
 
       vim.keymap.set("n", "<leader>N", ":NoNeckPain<CR>", { desc = "Toggle [N]oNeckPain" })
 
