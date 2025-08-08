@@ -15,6 +15,8 @@ vim.keymap.set('n', '<C-i>', '<C-i>zz')
 vim.keymap.set("n", "<Down>", ":cnext<CR>", { desc="[Q]uickfix next" })
 vim.keymap.set("n", "<Up>", ":cprev<CR>", { desc="[Q]uickfix prev" })
 
+-- paste in visual mode without overriding copy register
+vim.keymap.set("v", "p", "P")
 
 vim.keymap.set("i", "<C-k>", function()
   return "<Esc>ddkA"
