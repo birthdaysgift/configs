@@ -26,6 +26,7 @@ end, { noremap = true, expr = true })
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
+vim.keymap.set("v", "V", "$o_o")
 
 vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "[W]rite buffer" })
 vim.keymap.set("n", "<leader>q", ":quitall!<CR>", { desc = "[Q]uit nvim" })
