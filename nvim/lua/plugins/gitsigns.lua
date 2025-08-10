@@ -23,14 +23,14 @@ return {
         },
       })
 
-      vim.keymap.set("n", "<leader>g", "<NOP>", { desc = "[G]it" })
+      vim.keymap.set({ "n", "v" }, "<leader>g", "<NOP>", { desc = "[G]it" })
       vim.keymap.set("n", "<leader>gG", ":Gitsigns<CR>", { desc = "[G]itsigns" })
       vim.keymap.set("n", "<leader>gb", ":Gitsigns toggle_current_line_blame<CR>", { desc = "[B]lame line" })
       vim.keymap.set("n", "<leader>gd", ":Gitsigns toggle_deleted<CR>", { desc = "[D]eleted lines" })
       vim.keymap.set("n", "<leader>gB", ":Gitsigns blame<CR>", { desc = "[B]lame" })
       vim.keymap.set("n", "<leader>gD", ":Gitsigns diffthis<CR>", { desc = "[D]iff" })
-      vim.keymap.set("n", "<leader>gh", "<NOP>", { desc = "[H]unk"  })
-      vim.keymap.set("n", "<leader>ghs", ":Gitsigns stage_hunk<CR>", { desc = "[S]tage hunk" })
+      vim.keymap.set({ "n", "v" }, "<leader>gh", "<NOP>", { desc = "[H]unk"  })
+      vim.keymap.set({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", { desc = "[S]tage hunk" })
       vim.keymap.set("n", "<leader>ghu", ":Gitsigns undo_stage_hunk<CR>", { desc = "[U]ndo stage hunk" })
       vim.keymap.set("n", "<leader>ghR", ":Gitsigns reset_hunk<CR>", { desc = "[R]eset hunk" })
       vim.keymap.set("n", "<leader>ghv", ":Gitsigns select_hunk<CR>", { desc = "[V]isually select hunk" })
