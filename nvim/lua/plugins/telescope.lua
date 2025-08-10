@@ -90,7 +90,7 @@ return {
       -- Enable telescope extensions
       require('telescope').load_extension("fzf")
 
-      vim.keymap.set("n", "<leader>s", "<NOP>", { desc = "[S]earch with Telescope" })
+      vim.keymap.set({"n", "v"}, "<leader>s", "<NOP>", { desc = "[S]earch with Telescope" })
       vim.keymap.set("n", "<leader>sh", require("telescope.builtin").help_tags, { desc = "[H]elp" })
       vim.keymap.set("n", "<leader>sk", require("telescope.builtin").keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set("n", "<leader>sf", search_filesystem, { desc = '[S]earch [F]ilesystem' })
