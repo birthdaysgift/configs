@@ -27,6 +27,8 @@ return {
         ensure_installed = {
           "pyright",
           "lua-language-server",
+          "css-variables-language-server",
+          "css-lsp",
         },
       })
 
@@ -42,6 +44,9 @@ return {
           }
         },
       })
+
+      require("lspconfig").css_variables.setup({})
+      require("lspconfig").cssls.setup({})
 
       vim.keymap.set(
         "n",
