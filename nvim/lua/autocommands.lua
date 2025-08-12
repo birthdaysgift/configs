@@ -118,6 +118,8 @@ local autosave_filetypes = {
   python = true,
   sh = true,
   text = true,
+  javascriptreact = true,
+  css = true,
 }
 
 -- Create a unique autocommand group to avoid duplication
