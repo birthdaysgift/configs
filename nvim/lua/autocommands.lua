@@ -120,6 +120,7 @@ local autosave_filetypes = {
   text = true,
   javascriptreact = true,
   css = true,
+  rust = true,
 }
 
 -- Create a unique autocommand group to avoid duplication
