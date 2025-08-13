@@ -29,6 +29,7 @@ return {
           "lua-language-server",
           "css-variables-language-server",
           "css-lsp",
+          "rust-analyzer",
         },
       })
 
@@ -47,6 +48,8 @@ return {
 
       require("lspconfig").css_variables.setup({})
       require("lspconfig").cssls.setup({})
+
+      require("lspconfig").rust_analyzer.setup({})
 
       vim.keymap.set(
         "n",
