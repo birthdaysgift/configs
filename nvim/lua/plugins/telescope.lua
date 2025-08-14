@@ -42,7 +42,7 @@ local function search_filesystem()
           end
 
           if stat.type == "directory" then
-            vim.cmd("Neotree reveal dir=" .. path)
+            vim.cmd("Neotree dir=" .. path)
             return
           end
 

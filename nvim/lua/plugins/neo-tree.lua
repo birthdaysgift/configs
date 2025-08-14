@@ -33,7 +33,7 @@ return {
       })
 
       vim.keymap.set("n", "<leader>n", "<NOP>", { desc = "[N]eotree" } )
-      vim.keymap.set("n", "<leader>nn", ":Neotree float toggle=true<CR>", { desc = "[N]eotree files" })
+      vim.keymap.set("n", "<leader>nn", ":Neotree float toggle=true dir=" .. vim.env.PWD .. "<CR>", { desc = "[N]eotree files" })
       vim.keymap.set("n", "<leader>nb", ":Neotree buffers float toggle=true<CR>", { desc = "[N]eotree [B]uffers" })
       vim.keymap.set("n", "<leader>ng", ":Neotree git_status float toggle=true<CR>", { desc = "[N]eotree [G]it" })
 
