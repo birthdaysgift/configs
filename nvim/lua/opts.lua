@@ -1,6 +1,12 @@
 -- See `:help vim.opt`
 -- See `:help option-list`
 
+-- add --login --interactive to make .bash_profile and .bashrc sourced
+-- before external command execution (allows to use aliases and functions)
+-- defined in our custom user .bash_profile and .bashrc files
+-- if something does
+vim.opt.shell = "bash -li"
+
 -- To make nvim work with keybindings typed in "ru" layout
 vim.opt.langmap = (
   ''
