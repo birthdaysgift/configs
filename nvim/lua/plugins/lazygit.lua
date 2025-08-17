@@ -1,4 +1,5 @@
--- lazygit integration inside nvim
+utils = require("utils")
+
 
 return {
   {
@@ -9,7 +10,7 @@ return {
     cmd = { "LazyGit" },
 
     config = function()
-      vim.keymap.set("n", "<leader>L", ":LazyGit<CR>", { desc= '[L]azyGit' } )
+      vim.keymap.set("n", "<leader>L", function() utils.cmd_float("LazyGit") end, { desc= '[L]azyGit' })
     end,
   },
 }
