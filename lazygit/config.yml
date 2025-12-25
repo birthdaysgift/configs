@@ -1,3 +1,41 @@
+gui:
+  sidePanelWidth: 0.25
+  expandFocusedSidePanel: true
+  expandedSidePanelWeight: 5
+
+  showNumstatInFilesView: true
+  statusPanelView: allBranchesLog
+
+git:
+  autoForwardBranches: none
+
+  log:
+    showGraph: never
+    # showWholeGraph: true
+
+  autoStageResolvedConflicts: false
+
+  # branchLogCmd: git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --
+  branchLogCmd: git log
+
+  merging:
+    args: "--no-ff"
+
+  paging:
+    pager: >
+      delta \
+        --dark \
+        --line-numbers \
+        --paging=never \
+        --line-numbers-left-format='{nm} ' \
+        --line-numbers-right-format='{np} ' \
+        --hunk-header-style=omit \
+        --side-by-side
+
+
+
+notARepository: quit
+
 keybinding:
   universal:
     quit: <esc>
