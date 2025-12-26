@@ -20,9 +20,13 @@ vim.opt.langmap = (
 
 -- enable line numbers
 vim.opt.number = true
---
+
+-- disable swap files
+vim.opt.swapfile = false
+
 -- enable relative line numbers
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
+
 
 -- draw column line
 vim.opt.colorcolumn = '121'
