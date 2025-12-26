@@ -104,3 +104,36 @@ vim.opt.formatoptions = vim.opt.formatoptions + 'p'  -- Don't break lines at sin
 
 
 vim.diagnostic.config({ underline = false })
+
+
+local function myTabLine()
+    local s = ""
+    for i = 1, vim.fn.tabpagenr("$") do
+        -- select the highlighting
+        if i == vim.fn.tabpagenr() then
+            s = s .. "%#TabLineSel#"
+        else
+            s = s .. "%#Title#"
+        end
+        s = s .. " " .. tostring(i) .. " "
+    end
+    -- after the last tab fill rest space
+    s = s .. "%#Title#"
+    return s
+end
+vim.opt.showtabline = 1
+vim.api.nvim_create_autocmd("TabNew", {
+    callback = function()
+        vim.opt.tabline = myTabLine()
+    end
+})
+vim.api.nvim_create_autocmd("TabClosed", {
+    callback = function()
+        vim.opt.tabline = myTabLine()
+    end
+})
+vim.api.nvim_create_autocmd("TabEnter", {
+    callback = function()
+        vim.opt.tabline = myTabLine()
+    end
+})
