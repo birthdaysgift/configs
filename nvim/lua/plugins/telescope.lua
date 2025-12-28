@@ -42,7 +42,7 @@ local function search_filesystem()
           end
 
           if stat.type == "directory" then
-            vim.cmd("Neotree dir=" .. path)
+            require("oil").open_float(path, {  preview = {vertical = true} })
             return
           end
 

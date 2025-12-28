@@ -10,8 +10,8 @@ return {
     },
     config = function()
       require("neo-tree").setup({
-        hijack_netrw_behavior="open_default",
         filesystem = {
+          hijack_netrw_behavior="disabled",
           bind_to_cwd = false,
           filtered_items = {
             visible = true,
@@ -33,7 +33,8 @@ return {
       })
 
       vim.keymap.set("n", "<leader>n", "<NOP>", { desc = "[N]eotree" } )
-      vim.keymap.set("n", "<leader>nn", ":Neotree dir=" .. vim.env.PWD .. "<CR>", { desc = "[N]eotree files" })
+      vim.keymap.set("n", "<leader>E", ":Neotree dir=" .. vim.env.PWD .. "<CR>", { desc = "[N]eotree project root" })
+
       vim.keymap.set("n", "<leader>nb", ":Neotree buffers<CR>", { desc = "[N]eotree [B]uffers" })
       vim.keymap.set("n", "<leader>ng", ":Neotree git_status<CR>", { desc = "[N]eotree [G]it" })
       vim.keymap.set("n", "<leader>ns", ":Neotree dir=~/.local/state/nvim/swap<CR>", { desc = "[N]eotree [S]wap files" })

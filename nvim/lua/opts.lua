@@ -94,8 +94,9 @@ vim.opt.scrolloff = 10
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 
-vim.g.netrw_liststyle = 3 -- tree instead of plain view
-vim.g.netrw_browse_split = 3 -- open file in a new tab
+-- prevent netrw to be opened at all
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- see help for 'formatoptions' and 'fo-table'
 -- to see already set options use :lua print(vim.o.formatoptions)
