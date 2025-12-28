@@ -26,7 +26,7 @@ local function search_filesystem()
         if stat and stat.type == "directory" then
           return { "tree", "-L", "1", "-F", "--dirsfirst", "-a", "-n", entry.value }
         end
-        return { "cat", "--number", entry.value }
+        return { "bat", "--number", entry.value }
       end
     }),
     attach_mappings = function(_, _)
