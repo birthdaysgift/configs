@@ -14,6 +14,7 @@ local function search_filesystem()
         "--exclude", ".git",
         "--exclude", ".venv*",
         "--exclude", "__pycache__",
+        "--exclude", ".mypy_cache",
         "--exclude", "node_modules",
       },
       { cwd = vim.uv.cwd() }
@@ -81,6 +82,7 @@ return {
               "--glob", "!**/.git/*", -- exclude .git/ directory files
               "--glob", "!**/node_modules/*", -- exclude node_modules/ directory files
               "--glob", "!**/.venv*/*", -- exclude .venv*/ directory files
+              "--glob", "!**/.mypy_cache/*", -- exclude .mypy_cache directories and files
               "--glob", "!**/__pycache__", -- exclude __pycache__ directories and files
             }
           ),
