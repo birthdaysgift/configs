@@ -74,6 +74,11 @@ return {
 
       require('telescope').setup({
         defaults = {
+          mappings = {
+            i = {
+              ["<Esc>"] = require('telescope.actions').close,
+            }
+          },
           vimgrep_arguments = utils.list_concat(
             require("telescope.config").values.vimgrep_arguments,
             {
