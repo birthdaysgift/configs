@@ -1,3 +1,6 @@
+#!/usr/bin/bash
+
+
 if [[ "$BASHPROFILE_LOADED" != "true" ]]; then
     . "$HOME/.bash_profile"
     return
