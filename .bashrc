@@ -17,8 +17,8 @@ export MANPAGER="nvim +Man!"
 # export HISTCONTROL=ignoreboth
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-export HISTSIZE=1000
-export HISTFILESIZE=2000
+export HISTSIZE=2000
+export HISTFILESIZE=5000
 export HISTCONTROL=ignoredups:ignorespace:erasedups
 
 
@@ -28,6 +28,17 @@ shopt -s histappend
 # This command appends the current session's history to the .bash_history file
 # each time when a new command is executed within bash.
 PROMPT_COMMAND="history -w;$PROMPT_COMMAND"
+
+edit_bash_history() {
+  tmpfile=~/.history-edit-buffer.txt
+  history | cut -c 8- | grep -E '^[a-zA-Z_.]' > "$tmpfile"
+  nvim +"normal G" "$tmpfile"
+  history -c
+  history -r "$tmpfile"
+}
+
+alias j=edit_bash_history
+
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
