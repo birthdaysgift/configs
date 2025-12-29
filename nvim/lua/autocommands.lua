@@ -115,6 +115,12 @@ local autosave_filetypes = {
   javascriptreact = true,
   css = true,
   rust = true,
+  dockerfile = true,
+  yaml = true,
+  json = true,
+  tf = true,
+  toml = true,
+  ["terraform-vars"] = true,
 }
 
 -- Create a unique autocommand group to avoid duplication
