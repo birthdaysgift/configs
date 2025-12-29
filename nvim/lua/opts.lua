@@ -63,7 +63,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes:4'
+vim.opt.signcolumn = 'yes:2'
 
 -- If this many milliseconds nothing is typed the swap file will be written to disk
 vim.opt.updatetime = 250
