@@ -105,6 +105,7 @@ set_alias p3 'python3'
 set_alias g 'rg -i'
 
 
+alias ac='source .venv/bin/activate'
 alias al='alias'
 alias d='deactivate'
 alias s='source'
@@ -117,6 +118,8 @@ alias c='clear'
 alias fk='history -d -2'  # drop last command from bash history
 alias b='bat --color=always'
 alias rel='source ~/.bashrc'
+alias aws='~/programs/aws/aws-installed/v2/2.0.30/bin/aws'
+alias uv='.venv-poetry/bin/uv'
 
 
 tere() {
