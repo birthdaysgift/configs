@@ -154,7 +154,6 @@ ff() {
     TARGET_DIR=$(
 	fd \
 	    --type d \
-	    --hidden \
 	    --no-ignore \
 	    --exclude .git \
 	    --exclude __pycache__ \
