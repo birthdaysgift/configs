@@ -233,46 +233,86 @@ esac
 
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --bash)"
-# enable fzf completion for "nv" alias
-_fzf_setup_completion path nv
 export FZF_CTRL_R_OPTS="--style full:rounded"
-export FZF_CTRL_T_OPTS="\
-    --style full:rounded \
-    --preview='bat --color=always {}' \
+
+export FZF_CTRL_T_COMMAND="\
+    fd \
+    --hidden \
+    --no-ignore \
+    --exclude __pycache__ \
+    --exclude .git \
+    --exclude '.venv*' \
+    --exclude node_modules
 "
 
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-
-# # ex = EXtractor for all kinds of archives
-# # usage: ex <file>
-ex ()
-{
-if [ -f $1 ] ; then
-    case $1 in
-	*.tar.bz2)   tar xjf $1   ;;
-	*.tar.gz)    tar xzf $1   ;;
-	*.bz2)       bunzip2 $1   ;;
-	*.rar)       unrar x $1   ;;
-	*.gz)        gunzip $1    ;;
-	*.tar)       tar xf $1    ;;
-	*.tbz2)      tar xjf $1   ;;
-	*.tgz)       tar xzf $1   ;;
-	*.zip)       unzip $1     ;;
-	*.Z)         uncompress $1;;
-	*.7z)        7z x $1      ;;
-	*.deb)       ar x $1      ;;
-	*.tar.xz)    tar xf $1    ;;
-	*.tar.zst)   tar xf $1    ;;
-	*)           echo "'$1' cannot be extracted via ex()" ;;
-    esac
-else
-    echo "'$1' is not a valid file"
-fi
+fuzzy_files_with_hidden() {
+    fd \
+	--hidden \
+	--no-ignore \
+	--exclude __pycache__ \
+	--exclude .git \
+	--exclude node_modules \
+    | fzf \
+	--style full:rounded \
+	--height=~40% \
+	--layout=reverse \
+	--preview='bat --color=always {}'
 }
+
+__fzf_insert_file_path() {
+  local file
+  file=$(fd \
+    --hidden \
+    --no-ignore \
+    --exclude __pycache__ \
+    --exclude .git \
+    --exclude '.venv*' \
+    --exclude node_modules \
+    | fzf \
+      --height=40% \
+      --layout=reverse \
+      --preview='bat --color=always {}' \
+      --style=full:rounded
+  )
+  if [[ -n "$file" ]]; then
+    READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT}$file${READLINE_LINE:$READLINE_POINT}"
+    READLINE_POINT=$(( READLINE_POINT + ${#file} ))
+  fi
+}
+
+
+__fzf_insert_file_path_with_hidden() {
+  local file
+  file=$(fd \
+    --hidden \
+    --no-ignore \
+    --exclude __pycache__ \
+    --exclude .git \
+    --exclude node_modules \
+    | fzf \
+      --height=40% \
+      --layout=reverse \
+      --preview='bat --color=always {}' \
+      --style=full:rounded
+  )
+  if [[ -n "$file" ]]; then
+    READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT}$file${READLINE_LINE:$READLINE_POINT}"
+    READLINE_POINT=$(( READLINE_POINT + ${#file} ))
+  fi
+}
+
+bind -x '"\C-f": __fzf_insert_file_path'
+bind -x '"\C-t": __fzf_insert_file_path_with_hidden'
+
+
+_fzf_complete_docker() {
+  _fzf_complete --multi --reverse --prompt="docker> " -- "$@" < <(
+	docker ps -a --format '{{.Names}}'
+  )
+}
+
+[ -n "$BASH" ] && complete -F _fzf_complete_docker -o default -o bashdefault docker
+
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
