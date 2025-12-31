@@ -29,6 +29,34 @@ shopt -s histappend
 # each time when a new command is executed within bash.
 PROMPT_COMMAND="history -w;$PROMPT_COMMAND"
 
+
+ncmd() {
+  local tmpfile
+  tmpfile="$(mktemp /tmp/ncmd.XXXXXX.txt)"
+
+  # Open Neovim and let the user type the command
+  nvim +"startinsert" "$tmpfile"
+
+  # Read the first non-empty line from the file
+  local cmd
+  cmd=$(grep -v '^\s*$' "$tmpfile" | head -n 1)
+
+  # Clean up
+  rm -f "$tmpfile"
+
+  # Check if command is not empty
+  if [[ -n "$cmd" ]]; then
+    # Save to history
+    history -s "$cmd"
+    # Execute the command in the current shell
+    eval "$cmd"
+  fi
+}
+
+
+bind -r '\C-n'
+bind -x '"\C-n":ncmd'
+
 edit_bash_history() {
   tmpfile=~/.history-edit-buffer.txt
   history | cut -c 8- | grep -E '^[a-zA-Z_.]' > "$tmpfile"
