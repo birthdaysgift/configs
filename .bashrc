@@ -129,21 +129,43 @@ set_alias p3 'python3'
 set_alias g 'rg -i'
 
 
-alias ac='source .venv/bin/activate'
 alias al='alias'
-alias d='deactivate'
 alias s='source'
 alias zj='zellij'
 alias lg='lazygit'
 alias r='ranger'
 alias f='tere'
-alias vp='.venv-poetry/bin/poetry'
 alias c='clear'
 alias fk='history -d -2'  # drop last command from bash history
 alias b='bat --color=always'
 alias rel='source ~/.bashrc'
 alias aws='~/programs/aws/aws-installed/v2/2.0.30/bin/aws'
-alias uv='.venv-poetry/bin/uv'
+
+
+venv-create() {
+    ARGS_NUMBER=$#
+    if [ $ARGS_NUMBER -eq 1 ]; then
+	PY_VERSION=$1
+	python${PY_VERSION} -m venv --upgrade-deps .venv
+	source .venv/bin/activate
+	return 0
+    elif [ $ARGS_NUMBER -eq 2 ]; then
+	TOOL=$1
+	TOOL_VERSION=$2
+	python3 -m venv --upgrade-deps .venv-${TOOL}
+	if [ $TOOL_VERSION == "latest" ]; then
+	    .venv-${TOOL}/bin/pip install ${TOOL}
+	else
+	    .venv-${TOOL}/bin/pip install ${TOOL}==${TOOL_VERSION}
+	fi
+	return 0
+    fi
+}
+alias va='source .venv/bin/activate'
+alias vd='deactivate'
+alias vc='venv-create'
+alias poetry='.venv-poetry/bin/poetry'
+alias uv='.venv-uv/bin/uv'
 
 
 tere() {
