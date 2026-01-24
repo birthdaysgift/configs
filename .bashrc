@@ -149,13 +149,14 @@ alias uv='.venv-poetry/bin/uv'
 tere() {
     start_time_ms=$(($(date +%s%N) / 1000000))
 
-    local result=$( \
+    local result
+    result=$( \
 	command tere \
 	--normal-search \
 	--map='ctrl-n:CursorDown,ctrl-p:CursorUp,ctrl-d:CursorDownScreen,ctrl-u:CursorUpScreen' \
 	"$@" \
     )
-    [ -n "$result" ] && cd -- "$result"
+    [ -n "$result" ] && cd -- "$result" || exit
 
     end_time_ms=$(($(date +%s%N) / 1000000))
     time_diff_ms=$((end_time_ms - start_time_ms))
