@@ -57,6 +57,12 @@ ncmd() {
 bind -r '\C-n'
 bind -x '"\C-n":ncmd'
 
+
+# Disable flow control to allow Ctrl-S to be used
+stty -ixon
+bind -x '"\C-s":clear'
+
+
 edit_bash_history() {
   tmpfile=~/.history-edit-buffer.txt
   history | cut -c 8- | grep -E '^[a-zA-Z_.]' > "$tmpfile"
