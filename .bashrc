@@ -254,6 +254,7 @@ PATH_prepend "$HOME/programs/nvim-linux64/bin"
 PATH_prepend "$HOME/programs/aws/bin"
 PATH_prepend "$HOME/programs/aws-azure-login"
 PATH_prepend "$HOME/programs/.tfenv/bin"
+PATH_prepend "$HOME/.local/kitty.app/bin"
 
 # If not running interactively, don't do anything
 case $- in
