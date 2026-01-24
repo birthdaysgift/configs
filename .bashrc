@@ -214,6 +214,7 @@ ff() {
 	    --exclude .git \
 	    --exclude __pycache__ \
 	    --exclude node_modules \
+	    --hidden \
 	    . \
 	    "$BASE_DIR" \
 	    | sed "s|^$BASE_DIR/||" \
