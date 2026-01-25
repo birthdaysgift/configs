@@ -39,7 +39,7 @@ return {
       vim.keymap.set("n", "<leader>ghP", ":Gitsigns preview_hunk_inline<CR>", { desc = "[P]review hunk" })
       vim.keymap.set(
         "n",
-        "<leader>gI",
+        "<leader>gi",
         function()
           require("gitsigns").toggle_deleted()
           require("gitsigns").toggle_word_diff()
