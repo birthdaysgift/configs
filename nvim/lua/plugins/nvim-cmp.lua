@@ -16,6 +16,7 @@ return {
       local cmp = require("cmp")
 
       cmp.setup {
+        window = { completion = {border = "rounded", scrollbar=false }, documentation = {border = "rounded"} },
         completion = { completeopt = "menu,menuone,noinsert" },
 
         -- For an understanding of why these mappings were
