@@ -95,6 +95,39 @@ return {
         },
       })
 
+
+      local builtin = require("telescope.builtin")
+      local actions = require("telescope.actions")
+      local action_state = require("telescope.actions.state")
+
+      vim.keymap.set("n", "<leader>/", function()
+        builtin.current_buffer_fuzzy_find({
+          attach_mappings = function(_, map)
+            local move_to_match = function(prompt_bufnr)
+              local entry = action_state.get_selected_entry()
+              local search = action_state.get_current_line()
+              actions.close(prompt_bufnr)
+
+              -- Move cursor to the selected line first
+              vim.api.nvim_win_set_cursor(0, { entry.lnum, 0 })
+
+              -- Then search for the term in that line
+              if search ~= "" then
+                local line = vim.api.nvim_get_current_line()
+                local start_col = string.find(line, vim.pesc(search))
+                if start_col then
+                  vim.api.nvim_win_set_cursor(0, { entry.lnum, start_col })
+                end
+              end
+            end
+
+            map("i", "<CR>", move_to_match)
+            map("n", "<CR>", move_to_match)
+            return true
+          end,
+        })
+      end, { desc = "[/] Fuzzy search and jump to match in current buffer" })
+
       -- Enable telescope extensions
       require('telescope').load_extension("fzf")
 
@@ -111,7 +144,6 @@ return {
       vim.keymap.set({"n", "v"}, "<leader>s:", require("telescope.builtin").command_history, { desc = '[S]earch [:] history' })
       vim.keymap.set("n", "<leader>s/", require("telescope.builtin").search_history, { desc = '[S]earch [/] history' })
       vim.keymap.set("n", "<leader><leader>", require("telescope.builtin").buffers, { desc = '[ ] Existing buffers' })
-      vim.keymap.set("n", "<leader>/", require("telescope.builtin").current_buffer_fuzzy_find, { desc = '[/] Fuzzily search in current buffer' })
     end,
   },
 }
