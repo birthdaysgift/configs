@@ -77,6 +77,7 @@ return {
           mappings = {
             i = {
               ["<Esc>"] = require('telescope.actions').close,
+              ["<C-s>"] = require("telescope.actions").select_horizontal,
             }
           },
           vimgrep_arguments = utils.list_concat(
