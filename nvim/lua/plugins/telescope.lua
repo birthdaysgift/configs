@@ -95,6 +95,59 @@ return {
         },
       })
 
+      local actions = require('telescope.actions')
+      local action_state = require('telescope.actions.state')
+      local pickers = require('telescope.pickers')
+      local finders = require('telescope.finders')
+      local conf = require('telescope.config').values
+
+      local workspace_dir = vim.loop.cwd()
+
+      local function telescope_find_dirs()
+        pickers.new({}, {
+          prompt_title = "Find Directory",
+          finder = finders.new_oneshot_job(
+            {
+              "fd",
+              "--type",
+              "d",
+              "--hidden",
+              "--no-ignore",
+              "--exclude", ".git",
+              "--exclude", ".venv*",
+              "--exclude", "__pycache__",
+              "--exclude", ".mypy_cache",
+              "--exclude", "node_modules",
+            },
+            { cwd = workspace_dir }
+          ),
+          sorter = conf.generic_sorter({}),
+          attach_mappings = function(prompt_bufnr, map)
+            local function cd_dir()
+              local selection = action_state.get_selected_entry()
+              actions.close(prompt_bufnr)
+              vim.cmd("cd " .. workspace_dir)
+              vim.cmd("cd " .. selection[1])
+              print("Changed directory to: " .. selection[1])
+            end
+
+            map('i', '<CR>', cd_dir)
+            map('n', '<CR>', cd_dir)
+            return true
+          end,
+        }):find()
+      end
+
+      vim.keymap.set('n', '<leader>c', telescope_find_dirs, { desc = "[C]hange working directory" })
+      vim.keymap.set(
+        'n',
+        '<leader>.',
+        function()
+          vim.cmd("cd " .. workspace_dir)
+          print("Changed directory to: " .. workspace_dir)
+        end,
+        { desc = "Go to workspace directory" }
+      )
 
       local builtin = require("telescope.builtin")
       local actions = require("telescope.actions")
