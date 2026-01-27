@@ -18,6 +18,9 @@ vim.keymap.set("n", "<leader>X", "<cmd>!chmod +x %<CR>", { silent = true })
 vim.keymap.set("n", "<Down>", ":cnext<CR>", { desc="[Q]uickfix next" })
 vim.keymap.set("n", "<Up>", ":cprev<CR>", { desc="[Q]uickfix prev" })
 
+-- join lines without moving cursor
+vim.keymap.set("n", "J", "mzJ`z")
+
 -- paste in visual mode without overriding copy register
 vim.keymap.set("v", "p", "P")
 
