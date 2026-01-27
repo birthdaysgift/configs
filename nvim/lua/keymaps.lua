@@ -11,6 +11,9 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz')
 vim.keymap.set('n', '<C-o>', '<C-o>zz')
 vim.keymap.set('n', '<C-i>', '<C-i>zz')
 
+
+vim.keymap.set("n", "<leader>X", "<cmd>!chmod +x %<CR>", { silent = true })
+
 -- quickfix list navigation
 vim.keymap.set("n", "<Down>", ":cnext<CR>", { desc="[Q]uickfix next" })
 vim.keymap.set("n", "<Up>", ":cprev<CR>", { desc="[Q]uickfix prev" })
