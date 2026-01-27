@@ -56,6 +56,9 @@ vim.keymap.set("n", "<C-f>f", "4gt", { desc="Tab 4 (short)" })
 vim.keymap.set("n", "<C-f>n", ":tabnew<CR>", { desc="New tab" })
 vim.keymap.set("n", "<C-f>x", ":tabclose<CR>", { desc="Close tab" })
 
+vim.keymap.set("n", "<C-f>i", ":-tabmove<CR>", { desc="Move tab left" })
+vim.keymap.set("n", "<C-f>o", ":+tabmove<CR>", { desc="Move tab right" })
+
 
 local show_diagnostics = false
 vim.keymap.set("n", "<leader>D", function()
