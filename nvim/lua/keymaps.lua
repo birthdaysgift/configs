@@ -24,9 +24,7 @@ vim.keymap.set("n", "J", "mzJ`z")
 -- paste in visual mode without overriding copy register
 vim.keymap.set("v", "p", "P")
 
-vim.keymap.set("i", "<C-k>", function()
-  return "<Esc>ddkA"
-end, { noremap = true, expr = true })
+vim.keymap.set("i", "<C-k>", "<C-t>", { noremap = true, silent = true })
 
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
