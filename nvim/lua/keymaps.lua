@@ -36,6 +36,14 @@ vim.keymap.set(
   end
 )
 
+vim.keymap.set('v', 'p', 'ip', { noremap = true, silent = true })
+vim.keymap.set('v', 'W', 'iW', { noremap = true, silent = true })
+vim.keymap.set('v', 'w', 'iw', { noremap = true, silent = true })
+vim.keymap.set('o', 'w', 'iw', { noremap = true, silent = true })
+vim.keymap.set('o', 'W', 'iW', { noremap = true, silent = true })
+vim.keymap.set('o', 'p', 'ip', { noremap = true, silent = true })
+
+
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 

@@ -56,13 +56,43 @@ return {
         n_lines = 500,
       })
 
+      -- Make `db` behave exactly like `dib`
+      vim.keymap.set('n', 'db', function()
+        vim.api.nvim_feedkeys('d', 'n', false)
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('ib', true, false, true), 'x', false)
+      end, { noremap = true, silent = true })
+
+      -- Make `yb` behave exactly like `yib`
+      vim.keymap.set('n', 'yb', function()
+        vim.api.nvim_feedkeys('y', 'n', false)
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('ib', true, false, true), 'x', false)
+      end, { noremap = true, silent = true })
+
+      -- Make `cb` behave exactly like `cib`
+      vim.keymap.set('n', 'cb', function()
+        local keys = vim.api.nvim_replace_termcodes('cib', true, false, true)
+        vim.api.nvim_feedkeys(keys, 'm', true)
+      end, { noremap = true, silent = true })
+
+      -- Make `vq` behave exactly like `viq`
+      vim.keymap.set('n', 'vq', function()
+        vim.api.nvim_feedkeys('v', 'n', false)
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('iq', true, false, true), 'x', false)
+      end, { noremap = true, silent = true })
+
+      -- Make `vb` behave exactly like `vib`
+      vim.keymap.set('n', 'vb', function()
+        vim.api.nvim_feedkeys('v', 'n', false)
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('ib', true, false, true), 'x', false)
+      end, { noremap = true, silent = true })
+
       -- disable default 's' behavior to not conflict with mini.surround
       vim.keymap.set({'n', 'v'}, 's', '<Nop>')
       require("mini.surround").setup()
 
       require("mini.splitjoin").setup({
-        split = { 
-          hooks_post = { 
+        split = {
+          hooks_post = {
             require("mini.splitjoin").gen_hook.add_trailing_separator(),
           },
         },
