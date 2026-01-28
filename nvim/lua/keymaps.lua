@@ -26,6 +26,15 @@ vim.keymap.set("v", "p", "P")
 
 vim.keymap.set("i", "<C-k>", "<C-t>", { noremap = true, silent = true })
 
+vim.keymap.set(
+  "v",
+  "/",
+  function()
+    vim.api.nvim_input("<Esc>")  -- exit to normal mode
+    vim.api.nvim_input("/")  -- start search
+    vim.api.nvim_input("\\%V")  -- enter prefix which allows to search in previously selected range
+  end
+)
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
