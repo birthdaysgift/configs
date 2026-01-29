@@ -60,6 +60,13 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 vim.keymap.set("v", "V", "$o_o")
 
+vim.keymap.set("n", "yf", ":%y<CR>", { desc = "[Y]ank [F]ile"})
+vim.keymap.set('n', 'yl', function()
+  local pos = vim.api.nvim_win_get_cursor(0)
+  vim.cmd('normal! _y$')
+  vim.api.nvim_win_set_cursor(0, pos)
+end, { desc = "[Y]ank [L]ine" })
+
 vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "[W]rite buffer" })
 vim.keymap.set("n", "<leader>q", ":quitall!<CR>", { desc = "[Q]uit nvim" })
 
