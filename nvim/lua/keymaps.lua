@@ -64,6 +64,12 @@ vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "[W]rite buffer" })
 vim.keymap.set("n", "<leader>q", ":quitall!<CR>", { desc = "[Q]uit nvim" })
 
 
+vim.keymap.set("n", "<C-e>", "$", { noremap = true, silent = true })
+vim.keymap.set("v", "<C-e>", "$", { noremap = true, silent = true })
+vim.keymap.set("i", "<C-e>", "<esc>A", { noremap = true, silent = true })
+vim.keymap.set("i", "<C-a>", "<esc>I", { noremap = true, silent = true })
+vim.keymap.set("o", "<C-e>", "$", { noremap = true, silent = true })
+
 vim.keymap.set("n", "<C-n>", "*zz", { noremap = true, silent =  true })
 vim.keymap.set("n", "n", "nzz", { noremap = true, silent =  true })
 vim.keymap.set("n", "N", "Nzz", { noremap = true, silent =  true })
