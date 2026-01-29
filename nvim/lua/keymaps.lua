@@ -21,6 +21,17 @@ vim.keymap.set("n", "<Up>", ":cprev<CR>", { desc="[Q]uickfix prev" })
 -- join lines without moving cursor
 vim.keymap.set("n", "J", "mzJ`z")
 
+local wrap_enabled = true
+vim.keymap.set(
+  "n",
+  "<leader>ow",
+  function()
+    wrap_enabled = not wrap_enabled
+    vim.api.nvim_set_option_value("wrap", wrap_enabled, {scope = "local"})
+  end,
+  { desc = "[W]rap toggle" }
+)
+
 -- paste in visual mode without overriding copy register
 vim.keymap.set("v", "p", "P")
 

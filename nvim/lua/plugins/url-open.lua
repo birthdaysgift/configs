@@ -10,7 +10,7 @@ return {
               return
           end
           url_open.setup({})
-          vim.keymap.set("n", "<leader>o", ":URLOpenUnderCursor<CR>", { desc = "[O]pen URL" })
+          vim.keymap.set("n", "<leader>O", ":URLOpenUnderCursor<CR>", { desc = "[O]pen URL" })
       end,
   },
 
