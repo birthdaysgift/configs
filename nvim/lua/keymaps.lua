@@ -64,6 +64,10 @@ vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "[W]rite buffer" })
 vim.keymap.set("n", "<leader>q", ":quitall!<CR>", { desc = "[Q]uit nvim" })
 
 
+vim.keymap.set("n", "<C-n>", "*zz", { noremap = true, silent =  true })
+vim.keymap.set("n", "n", "nzz", { noremap = true, silent =  true })
+vim.keymap.set("n", "N", "Nzz", { noremap = true, silent =  true })
+
 -- tab navigation
 vim.keymap.set("n", "<C-f>", "<NOP>", { desc="Tab navigation" })
 vim.keymap.set("n", "<C-f>1", "1gt", { desc="Tab 1" })
