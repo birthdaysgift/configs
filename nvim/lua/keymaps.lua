@@ -219,6 +219,24 @@ vim.keymap.set("n", "<C-f>x", ":tabclose<CR>", { desc="Close tab" })
 vim.keymap.set("n", "<C-f>i", ":-tabmove<CR>", { desc="Move tab left" })
 vim.keymap.set("n", "<C-f>o", ":+tabmove<CR>", { desc="Move tab right" })
 
+local last_tab = nil
+vim.api.nvim_create_autocmd("TabLeave", {
+    callback = function()
+        last_tab = vim.api.nvim_get_current_tabpage()
+    end,
+})
+vim.keymap.set(
+  "n",
+  "<C-f><C-f>",
+  function()
+    if last_tab and vim.api.nvim_tabpage_is_valid(last_tab) then
+      vim.api.nvim_set_current_tabpage(last_tab)
+    else
+      print("No previous tab to switch to.")
+    end
+  end,
+  { desc = "Switch to previous tab" }
+)
 
 local show_diagnostics = false
 vim.keymap.set("n", "<leader>D", function()
