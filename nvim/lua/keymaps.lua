@@ -60,6 +60,123 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 vim.keymap.set("v", "V", "$o_o")
 
+
+local function change_win_width(win, step)
+  vim.api.nvim_win_set_width(win, vim.api.nvim_win_get_width(win) + step)
+  vim.cmd("redraw")
+end
+
+local function change_win_height(win, step)
+  vim.api.nvim_win_set_height(win, vim.api.nvim_win_get_height(win) + step)
+  vim.cmd("redraw")
+end
+
+local function window_horizontal_side(win)
+  win = win or vim.api.nvim_get_current_win()
+  local pos = vim.api.nvim_win_get_position(win)
+  local col = pos[2]
+  local width = vim.api.nvim_win_get_width(win)
+  local screen_width = vim.o.columns
+
+  if col == 0 then
+    return "left"
+  elseif col + width >= screen_width then
+    return "right"
+  else
+    return "middle"
+  end
+end
+
+local function window_vertical_side(win)
+  win = win or vim.api.nvim_get_current_win()
+  local pos = vim.api.nvim_win_get_position(win)
+  local row = pos[1]                     -- top row of the window
+  local height = vim.api.nvim_win_get_height(win)
+  local screen_height = vim.o.lines      -- total number of screen lines
+
+  if row == 0 then
+    return "top"
+  elseif row + height >= screen_height then
+    return "bottom"
+  else
+    return "middle"
+  end
+end
+
+local function enter_resize_mode(
+  win,
+  step,
+  increase_width_char,
+  decrease_width_char,
+  increase_height_char,
+  decrease_height_char
+)
+  vim.cmd('echo "Resize mode: hjkl - resize, Esc: exit"')
+
+  while true do
+    local key = vim.fn.getchar()
+    local char = nil
+    if type(key) == "number" then
+      char = vim.fn.nr2char(key)
+    elseif type(key) == "string" then
+      char = key
+    end
+
+    if char == increase_width_char then
+      change_win_width(win, step)
+    elseif char == decrease_width_char then
+      change_win_width(win, -step)
+
+    elseif char == increase_height_char then
+      change_win_height(win, 2)
+    elseif char == decrease_height_char then
+      change_win_height(win, -2)
+
+    elseif char == "\27" then  -- ESC
+      break
+    end
+  end
+
+  vim.cmd('echo "Exited resize mode"')
+end
+
+vim.keymap.set(
+  "n",
+  "<C-w><C-r>",
+  function()
+
+    local win = vim.api.nvim_get_current_win()
+    local horizontal_side = window_horizontal_side(win)
+    local vertical_side = window_vertical_side(win)
+    print(vertical_side)
+
+    local step = 5
+    local increase_width_char = "l"
+    local decrease_width_char = "h"
+    local increase_height_char = "j"
+    local decrease_height_char = "k"
+
+    if horizontal_side ~= "left" then
+      increase_width_char = "h"
+      decrease_width_char = "l"
+    end
+    if vertical_side ~= "top" then
+      increase_height_char = "k"
+      decrease_height_char = "j"
+    end
+
+    enter_resize_mode(
+      win,
+      step,
+      increase_width_char,
+      decrease_width_char,
+      increase_height_char,
+      decrease_height_char
+    )
+  end,
+  { desc = "[R]esize mode" }
+)
+
 vim.keymap.set("n", "yf", ":%y<CR>", { desc = "[Y]ank [F]ile"})
 vim.keymap.set('n', 'yl', function()
   local pos = vim.api.nvim_win_get_cursor(0)
