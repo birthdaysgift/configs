@@ -55,13 +55,20 @@ return {
         }
       })
 
-      vim.keymap.set("n", "-", ":Oil<CR>", { desc = 'Open parent directory in oil.nvim' })
+      vim.keymap.set(
+        "n",
+        "-",
+        function()
+          require("oil").open(nil, { preview = { vertical = true } })
+        end,
+        { desc = 'Open parent directory in oil.nvim' }
+      )
 
       vim.keymap.set(
         "n",
         "<leader>e",
         function()
-          require("oil").open_float(vim.fn.getcwd())
+          require("oil").open_float(vim.fn.getcwd(), { preview = { vertical = true } })
         end,
         { desc = "Project directory in Oil with preview" }
       )
