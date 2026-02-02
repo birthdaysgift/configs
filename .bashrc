@@ -250,7 +250,7 @@ PATH_prepend() {
 }
 
 
-PATH_prepend "$HOME/programs/nvim-linux64/bin"
+PATH_prepend "$HOME/programs/nvim-linux-x86_64/bin"
 PATH_prepend "$HOME/programs/aws/bin"
 PATH_prepend "$HOME/programs/aws-azure-login"
 PATH_prepend "$HOME/programs/.tfenv/bin"
