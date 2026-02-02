@@ -25,9 +25,26 @@ export HISTCONTROL=ignoredups:ignorespace:erasedups
 # append to the history file, don't overwrite it
 shopt -s histappend
 
+auto_venv() {
+    # don't do nothing if venv was activated once
+    # by this script for for current directory
+    [[ "$PWD" == "$__AUTO_VENV_LAST_PWD" ]] && return
+    __AUTO_VENV_LAST_PWD="$PWD"
+
+    # deactivate venv if leaving directory
+    if [[ -n "$VIRTUAL_ENV" && "$PWD" != "$__AUTO_VENV_LAST_PWD" ]]; then
+        deactivate
+    fi
+
+    # activate .venv if directory contains .venv
+    if [[ -z "$VIRTUAL_ENV" && -f ".venv/bin/activate" ]]; then
+        source ".venv/bin/activate"
+    fi
+}
+
 # This command appends the current session's history to the .bash_history file
 # each time when a new command is executed within bash.
-PROMPT_COMMAND="history -w;$PROMPT_COMMAND"
+PROMPT_COMMAND="auto_venv;history -w;$PROMPT_COMMAND"
 
 
 ncmd() {
