@@ -1,0 +1,13 @@
+# ======= Disable ESC to act as emacs Meta ======= #
+# this piece of cake sets timeout to 1ms           #
+# and disables Escape char itself                  #
+# Why this behavior cannot be disabled at all??    #
+# Why readline, why?...                            #
+    "\e": nop                                      #
+    set keyseq-timeout 1                           #
+# It just freaks me out                            #
+# ================================================ #
+# btw it resolves glitches when pasting text to bash
+# just try to press escape and then paste some
+# command without this setting then you will see
+# why it's needed
