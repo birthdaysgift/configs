@@ -65,7 +65,7 @@ return {
         "n",
         "-",
         function()
-          require("oil").open(nil, { preview = { vertical = true } })
+          require("oil").open()
         end,
         { desc = 'Open parent directory in oil.nvim' }
       )
@@ -74,7 +74,7 @@ return {
         "n",
         "<leader>e",
         function()
-          require("oil").open_float(vim.fn.getcwd(), { preview = { vertical = true } })
+          require("oil").open_float(vim.fn.getcwd())
         end,
         { desc = "Project directory in Oil with preview" }
       )
