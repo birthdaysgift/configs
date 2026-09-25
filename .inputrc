@@ -3,8 +3,18 @@
 # and disables Escape char itself                  #
 # Why this behavior cannot be disabled at all??    #
 # Why readline, why?...                            #
+
+    # Disable escape sequences with Esc + <some key>
+    # if pressed outside of 1 ms time range
     "\e": nop                                      #
     set keyseq-timeout 1                           #
+
+    # Make Ctrl/Alt + Up/Down to act like just Up/Down
+    "\e[1;5A": previous-history
+    "\e[1;5B": next-history
+    "\e[1;3A": previous-history
+    "\e[1;3B": next-history
+
 # It just freaks me out                            #
 # ================================================ #
 # btw it resolves glitches when pasting text to bash
