@@ -7,7 +7,7 @@ return {
     event = 'VimEnter',
 
     opts = {
-      delay = 0,
+      delay = 500,
       icons = { mappings = false },
     },
   },
