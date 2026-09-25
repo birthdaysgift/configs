@@ -151,6 +151,7 @@ local function enter_resize_mode(
   vim.cmd('echo "Exited resize mode"')
 end
 
+vim.keymap.set("n", "<C-w>H", "<C-w>H<C-w><C-w>")
 vim.keymap.set(
   "n",
   "<C-w><C-r>",
