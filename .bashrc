@@ -171,18 +171,20 @@ venv-create() {
     ARGS_NUMBER=$#
     if [ $ARGS_NUMBER -eq 1 ]; then
 	PY_VERSION=$1
-	python${PY_VERSION} -m venv --upgrade-deps .venv
+	python${PY_VERSION} -m venv .venv
 	source .venv/bin/activate
+	echo "*" > .venv/.gitignore
 	return 0
     elif [ $ARGS_NUMBER -eq 2 ]; then
 	TOOL=$1
 	TOOL_VERSION=$2
-	python3 -m venv --upgrade-deps .venv-${TOOL}
+	python3 -m venv .venv-${TOOL}
 	if [ $TOOL_VERSION == "latest" ]; then
 	    .venv-${TOOL}/bin/pip install ${TOOL}
 	else
 	    .venv-${TOOL}/bin/pip install ${TOOL}==${TOOL_VERSION}
 	fi
+	echo "*" > .venv-${TOOL}/.gitignore
 	return 0
     fi
 }
