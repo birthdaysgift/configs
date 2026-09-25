@@ -15,7 +15,13 @@ local function search_filesystem()
         "--exclude", ".venv*",
         "--exclude", "__pycache__",
         "--exclude", ".mypy_cache",
+        "--exclude", ".pytest_cache",
+        "--exclude", ".ruff_cache",
         "--exclude", "node_modules",
+        "--exclude", "*.log*",
+        "--exclude", "*.egg-info*",
+        "--exclude", ".static_cache",
+        "--exclude", "htmlcov",
       },
       { cwd = vim.uv.cwd() }
     ),
@@ -89,7 +95,12 @@ return {
               "--glob", "!**/node_modules/*", -- exclude node_modules/ directory files
               "--glob", "!**/.venv*/*", -- exclude .venv*/ directory files
               "--glob", "!**/.mypy_cache/*", -- exclude .mypy_cache directories and files
+              "--glob", "!**/.pytest_cache/*", -- exclude .pytest_cache directories and files
+              "--glob", "!**/.ruff_cache/*", -- exclude .ruff_cache directories and files
               "--glob", "!**/__pycache__", -- exclude __pycache__ directories and files
+              "--glob", "!**/.static_cache",
+              "--glob", "!**/.log*",
+              "--glob", "!**/htmlcov",
             }
           ),
         },
@@ -117,7 +128,10 @@ return {
               "--exclude", ".venv*",
               "--exclude", "__pycache__",
               "--exclude", ".mypy_cache",
+              "--exclude", ".pytest_cache",
+              "--exclude", ".ruff_cache",
               "--exclude", "node_modules",
+              "--exclude", "htmlcov",
             },
             { cwd = workspace_dir }
           ),
@@ -125,9 +139,17 @@ return {
           attach_mappings = function(prompt_bufnr, map)
             local function cd_dir()
               local selection = action_state.get_selected_entry()
+
+              -- for some reason cwd_change_handling = true doesn't work here, so we have to do it manually
+              vim.cmd(":AutoSession save")
+
               actions.close(prompt_bufnr)
               vim.cmd("cd " .. workspace_dir)
               vim.cmd("cd " .. selection[1])
+
+              -- for some reason cwd_change_handling = true doesn't work here, so we have to do it manually
+              vim.cmd(":AutoSession restore")
+
               print("Changed directory to: " .. selection[1])
             end
 
@@ -188,7 +210,7 @@ return {
       vim.keymap.set("n", "<leader>sh", require("telescope.builtin").help_tags, { desc = "[H]elp" })
       vim.keymap.set("n", "<leader>sk", require("telescope.builtin").keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set("n", "<leader>sf", search_filesystem, { desc = '[S]earch [F]ilesystem' })
-      vim.keymap.set("n", "<leader>ss", require("telescope.builtin").builtin, { desc = '[S]earch [S]elect Telescope' })
+      vim.keymap.set("n", "<leader>sS", require("telescope.builtin").builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set("n", "<leader>sw", require("telescope.builtin").grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set("n", "<leader>sg", require("telescope.builtin").live_grep, { desc = '[S]earch by [G]rep' } )
       vim.keymap.set("n", "<leader>sd", require("telescope.builtin").diagnostics, { desc = '[S]earch [D]iagnostics' })
@@ -196,7 +218,7 @@ return {
       vim.keymap.set("n", "<leader>sr", require("telescope.builtin").resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set({"n", "v"}, "<leader>s:", require("telescope.builtin").command_history, { desc = '[S]earch [:] history' })
       vim.keymap.set("n", "<leader>s/", require("telescope.builtin").search_history, { desc = '[S]earch [/] history' })
-      vim.keymap.set("n", "<leader><leader>", require("telescope.builtin").buffers, { desc = '[ ] Existing buffers' })
+      vim.keymap.set("n", "<leader>ss", require("telescope.builtin").buffers, { desc = '[ ] Existing buffers' })
     end,
   },
 }
