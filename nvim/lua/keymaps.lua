@@ -32,6 +32,17 @@ vim.keymap.set(
   { desc = "[W]rap toggle" }
 )
 
+local relative_numbers_enabled = true
+vim.keymap.set(
+  "n",
+  "<leader>or",
+  function()
+    relative_numbers_enabled = not relative_numbers_enabled
+    vim.api.nvim_set_option_value("relativenumber", relative_numbers_enabled, {scope = "local"})
+  end,
+  { desc = "[R]elativenumber toggle" }
+)
+
 -- paste in visual mode without overriding copy register
 vim.keymap.set("v", "p", "P")
 
