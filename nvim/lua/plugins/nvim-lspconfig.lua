@@ -30,6 +30,7 @@ return {
           "css-variables-language-server",
           "css-lsp",
           "rust-analyzer",
+          "terraform-ls",
         },
       })
 
@@ -45,6 +46,8 @@ return {
           }
         },
       })
+
+      require("lspconfig").terraformls.setup({})
 
       require("lspconfig").css_variables.setup({})
       require("lspconfig").cssls.setup({})
