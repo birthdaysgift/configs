@@ -71,6 +71,18 @@ return {
         { desc = "Definition [LSP]" }
       )
 
+      local pyright_enabled = true
+      vim.keymap.set(
+        "n",
+        "<leader>op",
+        function()
+          pyright_enabled = not pyright_enabled
+          vim.lsp.enable("pyright", pyright_enabled)
+          print("pyright_enabled = " .. tostring(pyright_enabled))
+        end,
+        { desc = "Toggle Pyright" }
+      )
+
     end,
 
   },
