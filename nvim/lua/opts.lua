@@ -36,10 +36,10 @@ vim.opt.ruler = false  -- weird thing at the right side of the cmdline (idk why 
 vim.opt.statusline = table.concat({
   " [%{mode()}]",  -- Current mode
   " | %Y |", -- filetype
-  " [%{getcwd()}]",  -- current working directory
+  " [%{fnamemodify(getcwd(), ':t')}]",  -- current working directory
   " %m%r",  -- Modified/readonly
   " %=",  -- Align right
-  " %f |",  -- File path
+  " %{fnamemodify(expand('%'), ':.')} |",  -- File path
   " %p%%",  -- Percentage through file
   " | Ln: %l/%L | Col: %c",  -- Line and column
 })
