@@ -1,0 +1,42 @@
+
+- open tmux in latest used session
+    each time session is switched we can save session name/id
+    to somewhere like ~/.tmux-session, so we can use this file
+    to open latest session whenever tmux is opened
+
+- run `tmux start` on OS start
+    check how it will behave if we try to attach to tmux session
+    until tmux server isn't running
+
+- add keybinds to status-line (as in zellij)
+
+- open "term" session whenever there are some client
+attached to any other session right now
+    this is needed for having gnome-terminal to always be opened with tmux
+    so it will not interfere with already opened session when we open
+    a second/third terminal (because all terminals will be attached to "term" session)
+
+- persist panes scrollback for each session
+    (check tmux-resurrect/tmux-continuum capabilities)
+
+- leverage tmux popups:
+    session management
+    lazygit
+    python repl
+    python tmp file + entr on it
+    bash in cwd/home/root
+
+- fuzzy search through tabs/panes
+
+- add confirmation on closing latest window
+
+- fix all hardcoded paths in tmux config
+
+- print command start time and elapsed time
+
+- edit command history from popup
+
+- refactorm nvim config to separate custom keymaps and other to custom modules
+
+- check whether venv can be activated in nvim terminal
+    without having this logic in nvim terminal code
