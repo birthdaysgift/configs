@@ -101,7 +101,7 @@ vim.opt.formatoptions = vim.opt.formatoptions + '2'  -- When formatting text, us
 vim.opt.formatoptions = vim.opt.formatoptions + 'p'  -- Don't break lines at single spaces that follow periods.
 
 
-vim.diagnostic.config({ underline = false })
+vim.diagnostic.config({ signs = false, underline = false })
 
 
 local function myTabLine()
