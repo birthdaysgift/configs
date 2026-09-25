@@ -163,6 +163,8 @@ alias fk='history -d -2'  # drop last command from bash history
 alias b='bat --color=always'
 alias rel='source ~/.bashrc'
 alias aws='~/programs/aws/aws-installed/v2/2.0.30/bin/aws'
+alias clip='xclip -selection c'
+alias yt='~/programs/yt-dlp_linux'
 
 
 venv-create() {
@@ -369,6 +371,5 @@ export NVM_DIR="$HOME/.nvm"
 export BASHRC_LOADED="true"
 
 bind -x '"\C-o":nvim .'
-
 
 
