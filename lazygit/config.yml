@@ -10,12 +10,11 @@ git:
   autoForwardBranches: none
 
   log:
+    order: topo-order
     showGraph: never
-    # showWholeGraph: true
 
   autoStageResolvedConflicts: false
 
-  # branchLogCmd: git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --
   branchLogCmd: git log
 
   merging:
