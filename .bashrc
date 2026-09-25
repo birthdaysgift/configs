@@ -281,6 +281,9 @@ case $- in
       *) return;;
 esac
 
+# disables Alt+c (should be placed before `fzf --bash`)
+export FZF_ALT_C_COMMAND=""
+
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --bash)"
 export FZF_CTRL_R_OPTS="--style full:rounded"
